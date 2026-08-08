@@ -11,11 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TPPMSG8.Application\TPPMSG8.Application.csproj" />
+    <Folder Include="DataAccess\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccess\" />
+    <ProjectReference Include="..\TPPMSG8.Application\TPPMSG8.Application.csproj" />
   </ItemGroup>
 
 </Project>

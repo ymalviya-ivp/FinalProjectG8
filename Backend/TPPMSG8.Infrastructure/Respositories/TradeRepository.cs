@@ -9,7 +9,7 @@ using TPPMSG8.Infrastructure.DataAccess;
 
 namespace TPPMSG8.Infrastructure.Respositories {
   public class TradeRepository : ITrade {
-    AppDbContext _db;
+    private readonly AppDbContext _db;
     public TradeRepository(AppDbContext db) {
       _db = db;
     }
