@@ -10,8 +10,4 @@
     <ProjectReference Include="..\TPPMSG8.Domain\TPPMSG8.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

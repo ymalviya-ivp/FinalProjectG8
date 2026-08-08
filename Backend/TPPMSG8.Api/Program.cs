@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
 using TPPMSG8.Application.Interfaces;
+using TPPMSG8.Application.Services;
 using TPPMSG8.Infrastructure.DataAccess;
 using TPPMSG8.Infrastructure.Respositories;
 
@@ -30,6 +31,9 @@ namespace TPPMSG8.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddTransient<ITrade, TradeRepository>();
+            builder.Services.AddTransient<IEODPrice, EodPriceRepository>();
+            builder.Services.AddTransient<ISecurity, SecurityRepository>();
+            builder.Services.AddScoped<IPnlService, PnlService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
