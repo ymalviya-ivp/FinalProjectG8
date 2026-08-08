@@ -3,8 +3,7 @@ import axios from 'axios';
 
 const PnL = () => {
     const [pnlData, setPnlData] = useState([]);
-    // Default the date picker to today's date
-    const [valuationDate, setValuationDate] = useState(new Date().toISOString().split('T')[0]); 
+    const [valuationDate, setValuationDate] = useState('2026-03-31');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
