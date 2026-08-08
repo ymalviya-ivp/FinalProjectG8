@@ -1,4 +1,4 @@
-﻿namespace TPPMSG8.Domain.DTOs
+﻿namespace TPPMSG8.Application.DTOs
 {
     public class PnlDto
     {

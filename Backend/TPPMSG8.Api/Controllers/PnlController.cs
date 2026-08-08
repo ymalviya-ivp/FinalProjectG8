@@ -15,14 +15,14 @@ namespace TPPMSG8.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPnl([FromQuery] DateTime valuationDate)
+        public async Task<IActionResult> GetPnl([FromQuery] DateOnly? valuationDate)
         {
             try
             {
                 // Default to the case study required date if none is provided
                 if (valuationDate == default)
                 {
-                    valuationDate = new DateTime(2026, 3, 31);
+                    valuationDate = new DateOnly(2026, 3, 31);
                 }
 
                 var pnlData = await _pnlService.GetPnlAsOfDateAsync(valuationDate);

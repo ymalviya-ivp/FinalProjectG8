@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TPPMSG8.Application.Interfaces;
-using TPPMSG8.Domain.DTOs;
+using TPPMSG8.Application.DTOs;
 using TPPMSG8.Domain.Models;
 
 namespace TPPMSG8.Application.Services
@@ -21,10 +21,9 @@ namespace TPPMSG8.Application.Services
             _securityRepository = securityRepository;
         }
 
-        public Task<IEnumerable<PnlDto>> GetPnlAsOfDateAsync(DateTime valuationDate)
+        public Task<IEnumerable<PnlDto>> GetPnlAsOfDateAsync(DateOnly? valDateOnly)
         {
             var pnlResults = new List<PnlDto>();
-            var valDateOnly = DateOnly.FromDateTime(valuationDate);
 
             // Fetch everything synchronously as defined by your interfaces
             var allTrades = _tradeRepository.GetAllTrades(null, null);
