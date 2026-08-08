@@ -28,3 +28,4 @@ C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Application\obj\Debug\net8.0\T
 C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Application\obj\Debug\net8.0\refint\TPPMSG8.Application.dll
 C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Application\obj\Debug\net8.0\TPPMSG8.Application.pdb
 C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Application\obj\Debug\net8.0\ref\TPPMSG8.Application.dll
+C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Application\obj\Debug\net8.0\TPPMSG8.Application.sourcelink.json

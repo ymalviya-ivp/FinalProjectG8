@@ -32,3 +32,4 @@ C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Infrastructure\obj\Debug\net8.
 C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Infrastructure\obj\Debug\net8.0\refint\TPPMSG8.Infrastructure.dll
 C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Infrastructure\obj\Debug\net8.0\TPPMSG8.Infrastructure.pdb
 C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Infrastructure\obj\Debug\net8.0\ref\TPPMSG8.Infrastructure.dll
+C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Infrastructure\obj\Debug\net8.0\TPPMSG8.Infrastructure.sourcelink.json

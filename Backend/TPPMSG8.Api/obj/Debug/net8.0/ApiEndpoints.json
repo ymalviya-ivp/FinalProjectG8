@@ -10,24 +10,34 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "TPPMSG8.Api.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
+    "ContainingType": "TPPMSG8.Api.Controllers.TradesController",
+    "Method": "GetTrades",
+    "RelativePath": "api/Trades",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "securityId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "tradeDate",
+        "Type": "System.Nullable\u00601[[System.DateOnly, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TPPMSG8.Api.Controllers.TradesController",
+    "Method": "GetFilterOptions",
+    "RelativePath": "api/Trades/filters",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[TPPMSG8.Api.WeatherForecast, TPPMSG8.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": []
   }
 ]

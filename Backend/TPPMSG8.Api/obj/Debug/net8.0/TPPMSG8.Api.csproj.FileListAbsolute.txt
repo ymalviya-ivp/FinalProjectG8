@@ -309,4 +309,5 @@ C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Api\obj\Debug\net8.0\refint\TP
 C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Api\obj\Debug\net8.0\TPPMSG8.Api.pdb
 C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Api\obj\Debug\net8.0\TPPMSG8.Api.genruntimeconfig.cache
 C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Api\obj\Debug\net8.0\ref\TPPMSG8.Api.dll
+C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Api\obj\Debug\net8.0\TPPMSG8.Api.sourcelink.json
 C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
