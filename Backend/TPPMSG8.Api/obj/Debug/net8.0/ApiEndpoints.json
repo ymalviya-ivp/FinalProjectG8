@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "TPPMSG8.Api.Controllers.PnlController",
+    "Method": "GetPnl",
+    "RelativePath": "api/Pnl",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "valuationDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TPPMSG8.Api.Controllers.TestController",
     "Method": "GetTrades",
     "RelativePath": "api/Test/trades",

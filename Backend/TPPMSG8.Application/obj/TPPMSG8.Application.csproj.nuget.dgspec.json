@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Application\\TPPMSG8.Application.csproj": {}
+    "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Application\\TPPMSG8.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Application\\TPPMSG8.Application.csproj": {
+    "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Application\\TPPMSG8.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Application\\TPPMSG8.Application.csproj",
+        "projectUniqueName": "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Application\\TPPMSG8.Application.csproj",
         "projectName": "TPPMSG8.Application",
-        "projectPath": "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Application\\TPPMSG8.Application.csproj",
-        "packagesPath": "C:\\Users\\ymalviya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Application\\obj\\",
+        "projectPath": "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Application\\TPPMSG8.Application.csproj",
+        "packagesPath": "C:\\Users\\snavernekar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ymalviya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\snavernekar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,8 +33,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Domain\\TPPMSG8.Domain.csproj": {
-                "projectPath": "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Domain\\TPPMSG8.Domain.csproj"
+              "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Domain\\TPPMSG8.Domain.csproj": {
+                "projectPath": "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Domain\\TPPMSG8.Domain.csproj"
               }
             }
           }
@@ -74,20 +74,20 @@
         }
       }
     },
-    "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Domain\\TPPMSG8.Domain.csproj": {
+    "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Domain\\TPPMSG8.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Domain\\TPPMSG8.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Domain\\TPPMSG8.Domain.csproj",
         "projectName": "TPPMSG8.Domain",
-        "projectPath": "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Domain\\TPPMSG8.Domain.csproj",
-        "packagesPath": "C:\\Users\\ymalviya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ymalviya\\Desktop\\TPPMSG8\\Backend\\TPPMSG8.Domain\\obj\\",
+        "projectPath": "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Domain\\TPPMSG8.Domain.csproj",
+        "packagesPath": "C:\\Users\\snavernekar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\snavernekar\\Desktop\\New folder\\New folder\\FinalProjectG8\\Backend\\TPPMSG8.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ymalviya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\snavernekar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
