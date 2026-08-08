@@ -18,19 +18,19 @@ namespace TPPMSG8.Infrastructure.Respositories {
     }
 
     public List<PositionsTableDto> GetPositions(DateOnly? AsOfDate) {
-      var Trades = _db.Trades
-        .Include(t => t.Security)
-        .Where(t => t.TradeDate <= AsOfDate)
-        .OrderBy(t => t.TradeId)
+      var securities = _db.Securities.Include(
+          s => s.Trades.Where(t => t.TradeDate <= AsOfDate)
+          .OrderBy(t => t.TradeId
+          )
+        )
         .ToList();
 
-      var groupedTrades = Trades.GroupBy(t => t.SecurityId);
       var results = new List<PositionsTableDto>();
 
-      foreach(var group in groupedTrades) {
+      foreach(var security in securities) {
         int NetPosition = 0;
         decimal WeightedAverageCost = 0m;
-        foreach(var trade in group) {
+        foreach(var trade in security.Trades) {
           if (trade.BuySell == "BUY") {
             int CurrentPosition = NetPosition;
             NetPosition += trade.Quantity;
@@ -40,9 +40,9 @@ namespace TPPMSG8.Infrastructure.Respositories {
           }
         }
         results.Add(new PositionsTableDto {
-          SecurityId = group.Key,
-          SecurityName = group.ElementAt(0).Security.SecurityName,
-          AssetClass = group.ElementAt(0).Security.AssetClass,
+          SecurityId = security.SecurityId,
+          SecurityName = security.SecurityName,
+          AssetClass = security.AssetClass,
           NetQuantity = NetPosition,
           AverageCost = Math.Round(WeightedAverageCost, 4)
         });
