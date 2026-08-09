@@ -6,83 +6,83 @@ using TPPMSG8.Application.Interfaces;
 using TPPMSG8.Application.DTOs;
 using TPPMSG8.Domain.Models;
 
-namespace TPPMSG8.Application.Services
-{
-    public class PnlService : IPnlService
-    {
-        private readonly ITrade _tradeRepository;
-        private readonly IEODPrice _eodPriceRepository;
-        private readonly ISecurity _securityRepository;
+namespace TPPMSG8.Application.Services {
+  public class PnlService : IPnlService {
+    private readonly ITrade _tradeRepository;
+    private readonly IEODPrice _eodPriceRepository;
+    private readonly ISecurity _securityRepository;
 
-        public PnlService(ITrade tradeRepository, IEODPrice eodPriceRepository, ISecurity securityRepository)
-        {
-            _tradeRepository = tradeRepository;
-            _eodPriceRepository = eodPriceRepository;
-            _securityRepository = securityRepository;
-        }
-
-        public Task<IEnumerable<PnlDto>> GetPnlAsOfDateAsync(DateOnly? valDateOnly)
-        {
-            var pnlResults = new List<PnlDto>();
-
-            // Fetch everything synchronously as defined by your interfaces
-            var allTrades = _tradeRepository.GetAllTrades(null, null);
-            var validTrades = allTrades.Where(t => t.TradeDate <= valDateOnly).ToList();
-
-            var securities = _securityRepository.GetAllSecurities();
-
-            var allEodPrices = _eodPriceRepository.GetAllEODPrices();
-            var eodPrices = allEodPrices.Where(e => e.PriceDate == valDateOnly).ToList();
-
-            foreach (var security in securities)
-            {
-                var securityTrades = validTrades
-                    .Where(t => t.SecurityId == security.SecurityId)
-                    .OrderBy(t => t.TradeDate)
-                    .ToList();
-
-                decimal netPosition = 0;
-                decimal avgCost = 0;
-                decimal realizedPnl = 0;
-
-                foreach (var trade in securityTrades)
-                {
-                    // UPDATED: Using trade.BuySell to match your Trade model
-                    if (trade.BuySell.Equals("Buy", StringComparison.OrdinalIgnoreCase))
-                    {
-                        decimal newPosition = netPosition + trade.Quantity;
-                        if (newPosition > 0)
-                        {
-                            avgCost = ((netPosition * avgCost) + (trade.Quantity * trade.Price)) / newPosition;
-                        }
-                        netPosition = newPosition;
-                    }
-                    else if (trade.BuySell.Equals("Sell", StringComparison.OrdinalIgnoreCase))
-                    {
-                        realizedPnl += (trade.Price - avgCost) * trade.Quantity;
-                        netPosition -= trade.Quantity;
-                    }
-                }
-
-                decimal unrealizedPnl = 0;
-                var currentPriceRecord = eodPrices.FirstOrDefault(e => e.SecurityId == security.SecurityId);
-
-                if (netPosition > 0 && currentPriceRecord != null)
-                {
-                    unrealizedPnl = (currentPriceRecord.ClosePrice - avgCost) * netPosition;
-                }
-
-                pnlResults.Add(new PnlDto
-                {
-                    SecurityId = security.SecurityId,
-                    SecurityTicker = security.SecurityName,
-                    RealizedPnl = realizedPnl,
-                    UnrealizedPnl = unrealizedPnl,
-                    TotalPnl = realizedPnl + unrealizedPnl
-                });
-            }
-
-            return Task.FromResult<IEnumerable<PnlDto>>(pnlResults);
-        }
+    public PnlService(ITrade tradeRepository, IEODPrice eodPriceRepository, ISecurity securityRepository) {
+      _tradeRepository = tradeRepository;
+      _eodPriceRepository = eodPriceRepository;
+      _securityRepository = securityRepository;
     }
+
+    public async Task<IEnumerable<PnlDto>> GetPnlAsOfDateAsync(DateOnly targetDate, string? securityId) {
+      var pnlResults = new List<PnlDto>();
+
+      var validTrades = await _tradeRepository.GetTradesAsOfDateAsync(targetDate);
+      var securities = await _securityRepository.GetAllSecuritiesAsync();
+      var eodPrices = await _eodPriceRepository.GetEodPricesByDateAsync(targetDate);
+
+      if (!string.IsNullOrWhiteSpace(securityId)) {
+        securities = securities.Where(s => s.SecurityId == securityId).ToList();
+      }
+
+      var securityLookup = securities.ToDictionary(s => s.SecurityId, s => s.SecurityName);
+      var priceLookup = eodPrices.ToDictionary(p => p.SecurityId, p => p.ClosePrice);
+
+      var tradesGroupedBySecurity = validTrades.GroupBy(trade => trade.SecurityId);
+
+
+      foreach (var tradeBucket in tradesGroupedBySecurity) {
+        string currentSecurityId = tradeBucket.Key;
+
+        string securityName = string.Empty;
+        if (securityLookup.ContainsKey(currentSecurityId)) {
+          securityName = securityLookup[currentSecurityId];
+        } else {
+          continue;
+        }
+
+          var sortedTrades = tradeBucket
+              .OrderBy(t => t.TradeId)
+              .ToList();
+
+        decimal netPosition = 0;
+        decimal avgCost = 0;
+        decimal realizedPnl = 0;
+
+        foreach (var trade in sortedTrades) {
+          if (trade.BuySell == "BUY") {
+            decimal newPosition = netPosition + trade.Quantity;
+            if (newPosition > 0) {
+              avgCost = ((netPosition * avgCost) + (trade.Quantity * trade.Price)) / newPosition;
+            }
+            netPosition = newPosition;
+          } else {
+            realizedPnl += (trade.Price - avgCost) * trade.Quantity;
+            netPosition -= trade.Quantity;
+          }
+        }
+
+        decimal unrealizedPnl = 0;
+
+        if (netPosition > 0 && priceLookup.ContainsKey(currentSecurityId)) {
+          decimal closePrice = priceLookup[currentSecurityId];
+          unrealizedPnl = (closePrice - avgCost) * netPosition;
+        }
+
+        pnlResults.Add(new PnlDto {
+          SecurityId = currentSecurityId,
+          SecurityTicker = securityName,
+          RealizedPnl = realizedPnl,
+          UnrealizedPnl = unrealizedPnl,
+          TotalPnl = realizedPnl + unrealizedPnl
+        });
+      }
+
+      return pnlResults;
+    }
+  }
 }

@@ -8,5 +8,6 @@ using TPPMSG8.Domain.Models;
 namespace TPPMSG8.Application.Interfaces {
   public interface IEODPrice {
     public List<EodPrice> GetAllEODPrices();
+    public Task<List<EodPrice>> GetEodPricesByDateAsync(DateOnly priceDate);
   }
 }

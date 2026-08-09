@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TPPMSG8.Application.DTOs;
 using TPPMSG8.Application.Interfaces;
+using TPPMSG8.Domain.Models;
 using TPPMSG8.Infrastructure.DataAccess;
 
 namespace TPPMSG8.Infrastructure.Respositories {
@@ -17,13 +18,30 @@ namespace TPPMSG8.Infrastructure.Respositories {
       _db = db;
     }
 
-    public List<PositionsTableDto> GetPositions(DateOnly? AsOfDate) {
-      var securities = _db.Securities.Include(
-          s => s.Trades.Where(t => t.TradeDate <= AsOfDate)
-          .OrderBy(t => t.TradeId
-          )
-        )
-        .ToList();
+    public async Task<List<PositionsTableDto>> GetPositionsAsync(DateOnly? asOfDate, string? securityId, string? assetClass) {
+
+      var query = _db.Securities.AsNoTracking();
+      if (!string.IsNullOrWhiteSpace(securityId)) {
+        query = query.Where(s => s.SecurityId == securityId);
+      }
+      if (!string.IsNullOrWhiteSpace(assetClass)) {
+        query = query.Where(s => s.AssetClass == assetClass);
+      }
+      var securities = await query
+          .Select(s => new {
+            s.SecurityId,
+            s.SecurityName,
+            s.AssetClass,
+            Trades = s.Trades
+                  .Where(t => t.TradeDate <= asOfDate)
+                  .OrderBy(t => t.TradeDate)
+                  .ThenBy(t => t.TradeId)
+                  .Select(t => new { 
+                    t.BuySell, t.Quantity, t.Price 
+                  })
+                  .ToList()
+          })
+          .ToListAsync();
 
       var results = new List<PositionsTableDto>();
 

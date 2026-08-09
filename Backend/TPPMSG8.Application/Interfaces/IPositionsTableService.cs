@@ -1,12 +1,11 @@
-﻿using System;
+﻿// TPPMSG8.Application.Interfaces.IPositionsTableService.cs
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TPPMSG8.Application.DTOs;
 
 namespace TPPMSG8.Application.Interfaces {
   public interface IPositionsTableService {
-    public List<PositionsTableDto> GetPositions(DateOnly? AsOfdate);
+    Task<List<PositionsTableDto>> GetPositionsAsync(DateOnly? asOfDate, string? securityId, string? assetClass);
   }
 }

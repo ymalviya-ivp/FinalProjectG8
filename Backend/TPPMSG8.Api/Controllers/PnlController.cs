@@ -15,22 +15,16 @@ namespace TPPMSG8.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPnl([FromQuery] DateOnly? valuationDate)
+        public async Task<IActionResult> GetPnl([FromQuery] DateOnly valuationDate, [FromQuery] string? securityId)
         {
             try
             {
-                // Default to the case study required date if none is provided
-                if (valuationDate == default)
-                {
-                    valuationDate = new DateOnly(2026, 3, 31);
-                }
 
-                var pnlData = await _pnlService.GetPnlAsOfDateAsync(valuationDate);
+                var pnlData = await _pnlService.GetPnlAsOfDateAsync(valuationDate, securityId);
                 return Ok(pnlData);
             }
             catch (Exception ex)
             {
-                // In a production app, log the exception here
                 return StatusCode(500, "An error occurred while calculating PnL.");
             }
         }

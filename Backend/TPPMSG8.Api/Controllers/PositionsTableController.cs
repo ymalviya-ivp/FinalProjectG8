@@ -12,11 +12,9 @@ namespace TPPMSG8.Api.Controllers {
       this.pts = pts;
     }
     [HttpGet("positions")]
-    public List<PositionsTableDto> GetPositions([FromQuery] DateOnly? AsOfDate) {
-      var asOfDate = (AsOfDate == null) ? new DateOnly(2026, 3, 31) : AsOfDate;
-
-      var positions = pts.GetPositions(asOfDate);
-      return positions;
+    public async Task<IActionResult> GetPositions([FromQuery] DateOnly? asOfDate, [FromQuery] string? securityId, [FromQuery] string?assetClass) {
+      var positions = await pts.GetPositionsAsync(asOfDate, securityId, assetClass);
+      return Ok(positions);
     }
   }
 }

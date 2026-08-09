@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const PnL = () => {
     const [pnlData, setPnlData] = useState([]);
-    const [valuationDate, setValuationDate] = useState('2026-03-31');
+    
+    // Filter Options
+    const [securityOptions, setSecurityOptions] = useState([]);
+    
+    // Filter Values
+    const DEFAULT_VALUATION_DATE = '2026-03-31';
+    const [valuationDate, setValuationDate] = useState(DEFAULT_VALUATION_DATE);
+    const [securityId, setSecurityId] = useState('');
+    
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // Calculate Summary Totals dynamically from the payload
+    // Calculate Summary Totals dynamically
     const totalRealized = pnlData.reduce((sum, item) => sum + (item.realizedPnl || 0), 0);
     const totalUnrealized = pnlData.reduce((sum, item) => sum + (item.unrealizedPnl || 0), 0);
     const netTotalPnL = pnlData.reduce((sum, item) => sum + (item.totalPnl || 0), 0);
 
-    const fetchPnL = async () => {
+    const fetchPnL = useCallback(async () => {
         if (!valuationDate) {
             setError('Please select a valuation date.');
             return;
@@ -21,30 +29,42 @@ const PnL = () => {
         setLoading(true);
         setError(null);
         try {
-            // Hitting the real API endpoint with the valuationDate query parameter
-            const response = await axios.get(`https://localhost:7021/api/Pnl?valuationDate=${valuationDate}`);
+            // Added securityId to the API call
+            const url = `https://localhost:7021/api/Pnl?valuationDate=${valuationDate}&securityId=${securityId}`;
+            const response = await axios.get(url);
             setPnlData(response.data);
         } catch (err) {
-            setError(err.message || 'Failed to fetch PnL data. Ensure the backend API is running.');
+            setError(err.message || 'Failed to fetch PnL data.');
             setPnlData([]);
         } finally {
             setLoading(false);
         }
-    };
+    }, [valuationDate, securityId]);
 
-    // Initial load when the component mounts
+    // Fetch Security dropdown options on mount
     useEffect(() => {
-        fetchPnL();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        const fetchDropdownData = async () => {
+            try {
+                const securityRes = await axios.get('https://localhost:7021/api/Securities/securityIds');
+                setSecurityOptions(securityRes.data || []);
+            } catch (err) {
+                console.error("Failed to load filter options", err);
+            }
+        };
+
+        fetchDropdownData();
     }, []);
 
-    // Handle manual searches when the user changes the date
-    const handleSearch = (e) => {
-        e.preventDefault();
+    // Auto-fetch PnL whenever filters change
+    useEffect(() => {
         fetchPnL();
+    }, [fetchPnL]);
+
+    const clearFilters = () => {
+        setSecurityId('');
+        setValuationDate(DEFAULT_VALUATION_DATE);
     };
 
-    // Helper to format currency and automatically apply red/green color classes
     const formatCurrency = (value) => {
         const num = Number(value) || 0;
         const formatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Math.abs(num));
@@ -54,46 +74,46 @@ const PnL = () => {
 
     return (
         <div className="pnl-container">
-            {/* Toolbar with Valuation Date Filter */}
             <div className="panel" style={{ marginBottom: '20px' }}>
-                <form onSubmit={handleSearch} className="toolbar">
+                <div className="toolbar">
+                    
+                    {/* Security ID Dropdown */}
+                    <div className="filter-group">
+                        <label>Security</label>
+                        <select 
+                            className="enterprise-select"
+                            value={securityId} 
+                            onChange={(e) => setSecurityId(e.target.value)}
+                        >
+                            <option value="">-- All Securities --</option>
+                            {securityOptions.map(sec => (
+                                <option key={sec.securityId} value={sec.securityId}>
+                                    {sec.securityId} - {sec.securityName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Valuation Date Filter */}
                     <div className="filter-group">
                         <label>Valuation Date</label>
                         <input 
                             type="date" 
-                            className="enterprise-select" 
+                            className="enterprise-input" 
                             value={valuationDate} 
                             onChange={(e) => setValuationDate(e.target.value)}
                             required
                         />
                     </div>
+                    
                     <div className="button-group">
-                        <button type="submit" className="btn btn-primary" disabled={loading}>
-                            {loading ? 'Loading...' : 'Calculate PnL'}
-                        </button>
+                        <button type="button" onClick={clearFilters} className="btn btn-secondary">Clear Filters</button>
                     </div>
-                </form>
-            </div>
-
-            {/* Top Summary Cards */}
-            <div className="summary-cards">
-                <div className="card">
-                    <h4>Total Realized PnL</h4>
-                    <div className="card-value">{formatCurrency(totalRealized)}</div>
-                </div>
-                <div className="card">
-                    <h4>Total Unrealized PnL</h4>
-                    <div className="card-value">{formatCurrency(totalUnrealized)}</div>
-                </div>
-                <div className="card highlight-card">
-                    <h4>Net Total PnL</h4>
-                    <div className="card-value">{formatCurrency(netTotalPnL)}</div>
                 </div>
             </div>
 
             {error && <div className="alert-error" style={{marginTop: '20px'}}>{error}</div>}
 
-            {/* PnL Data Table */}
             <div className="panel" style={{marginTop: '20px'}}>
                 <div className="toolbar" style={{justifyContent: 'space-between'}}>
                     <h3>PnL by Asset</h3>
@@ -116,7 +136,7 @@ const PnL = () => {
                             <tbody>
                                 {pnlData.length === 0 ? (
                                     <tr>
-                                        <td colSpan="5" className="text-center">No PnL data available for this date.</td>
+                                        <td colSpan="5" className="text-center">No PnL data available.</td>
                                     </tr>
                                 ) : (
                                     pnlData.map((item, index) => (

@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 using TPPMSG8.Application.Interfaces;
 
 namespace TPPMSG8.Api.Controllers {
@@ -7,19 +8,31 @@ namespace TPPMSG8.Api.Controllers {
   [ApiController]
   public class TradesController : ControllerBase {
     private readonly ITrade _trade;
-    public TradesController(ITrade trade) { 
+
+    public TradesController(ITrade trade) {
       _trade = trade;
     }
+
     [HttpGet]
-    public IActionResult GetTrades([FromQuery] string? securityId, [FromQuery] DateOnly? tradeDate) {
-      return Ok(_trade.GetAllTrades(securityId, tradeDate));
+    public async Task<IActionResult> GetTrades(
+        [FromQuery] string? securityId,
+        [FromQuery] int? traderId,
+        [FromQuery] DateOnly? fromDate,
+        [FromQuery] DateOnly? toDate) {
+      var trades = await _trade.GetAllTradesAsync(securityId, traderId, fromDate, toDate);
+      return Ok(trades);
     }
-    [HttpGet("filters")]
-    public IActionResult GetFilterOptions() {
-      var trades = _trade.GetAllTrades(null, null);
-      var securityIds = trades.Select(t => t.SecurityId).Distinct().ToList();
-      var tradeDates = trades.Select(t => t.TradeDate).Distinct().ToList();
-      return Ok(new { SecurityIds = securityIds, TradeDates = tradeDates });
+
+    [HttpGet("securityIds")]
+    public async Task<IActionResult> GetSecurityIds() {
+      var ids = await _trade.GetDistinctSecurityIdsAsync();
+      return Ok(ids);
+    }
+
+    [HttpGet("traderIds")] 
+    public async Task<IActionResult> GetTraders() {
+      var traders = await _trade.GetDistinctTradersAsync();
+      return Ok(traders);
     }
   }
 }
