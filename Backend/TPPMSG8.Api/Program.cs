@@ -4,9 +4,10 @@ using Serilog;
 using TPPMSG8.Api.Middleware;
 using TPPMSG8.Application.Interfaces;
 using TPPMSG8.Application.Services;
+using TPPMSG8.Domain.Models;
 using TPPMSG8.Infrastructure.DataAccess;
 using TPPMSG8.Infrastructure.Repositories;
-using TPPMSG8.Infrastructure.Respositories; 
+using TPPMSG8.Infrastructure.Respositories;
 
 namespace TPPMSG8.Api
 {
@@ -49,16 +50,16 @@ namespace TPPMSG8.Api
             builder.Services.AddSwaggerGen();
             builder.Services.AddHealthChecks(); // Added infrastructure health checks
 
-            // 5. Dependency Injection (Changed to Scoped to match DbContext lifecycle)
-            // Note: If you renamed interfaces to *Repository as recommended earlier, update them here.
+      // 5. Dependency Injection (Changed to Scoped to match DbContext lifecycle)
+      // Note: If you renamed interfaces to *Repository as recommended earlier, update them here.
             builder.Services.AddScoped<ITrade, TradeRepository>();
             builder.Services.AddScoped<IEODPrice, EodPriceRepository>();
             builder.Services.AddScoped<ISecurity, SecurityRepository>();
-            
             builder.Services.AddScoped<IPnlService, PnlService>();
             builder.Services.AddScoped<IPositionsTableService, PositionsTableService>();
+            builder.Services.AddScoped<IPositionsRepository, PositionsRepository>();
 
-            var app = builder.Build();
+      var app = builder.Build();
 
             // 6. Global Exception Middleware (Catches crashes and returns clean 500 JSON)
             app.UseMiddleware<ExceptionHandlingMiddleware>();
