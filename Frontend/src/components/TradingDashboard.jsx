@@ -22,13 +22,13 @@ const TradingDashboard = () => {
     const renderContent = () => {
         switch (activeTab) {
             case 'blotter':
-                return <TradeBlotter />;
+                return <TradeBlotter theme={theme} />;
             case 'positions':
-                return <Positions />;
+                return <Positions theme={theme} />;
             case 'pnl':
-                return <PnL />;
+                return <PnL theme={theme} />;
             default:
-                return <TradeBlotter />;
+                return <TradeBlotter theme={theme} />;
         }
     };
 
