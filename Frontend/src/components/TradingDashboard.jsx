@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TradeBlotter from './TradeBlotter';
 import Positions from './Positions';
 import PnL from './PnL';
@@ -6,50 +6,73 @@ import './Dashboard.css';
 
 const TradingDashboard = () => {
     const [activeTab, setActiveTab] = useState('blotter');
+    
+    const [theme, setTheme] = useState(() => {
+        return localStorage.getItem('theme') || 'light';
+    });
+
+    useEffect(() => {
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+    };
 
     const renderContent = () => {
         switch (activeTab) {
             case 'blotter':
-                return <TradeBlotter />;
+                return <TradeBlotter theme={theme} />;
             case 'positions':
-                return <Positions />;
+                return <Positions theme={theme} />;
             case 'pnl':
-                return <PnL />;
+                return <PnL theme={theme} />;
             default:
-                return <TradeBlotter />;
+                return <TradeBlotter theme={theme} />;
         }
     };
 
     return (
-        <div className="dashboard-layout">
-            <aside className="sidebar">
-                <div className="logo">Trading Pro</div>
-                <nav className="nav-menu">
-                    <button 
-                        className={activeTab === 'blotter' ? 'active' : ''} 
-                        onClick={() => setActiveTab('blotter')}
-                    >
-                        Trade Blotter
+        <div className="dashboard-layout" data-theme={theme}>
+            <header className="top-header">
+                <div className="header-left">
+                    <div className="logo-container">
+                        <span className="logo-main">Vantage</span>
+                        <span className="logo-sub">Capital Markets</span>
+                    </div>
+                </div>
+                
+                <div className="header-right">
+                    <nav className="top-nav">
+                        <button 
+                            className={activeTab === 'blotter' ? 'active' : ''} 
+                            onClick={() => setActiveTab('blotter')}
+                        >
+                            Trade Blotter
+                        </button>
+                        <button 
+                            className={activeTab === 'positions' ? 'active' : ''} 
+                            onClick={() => setActiveTab('positions')}
+                        >
+                            Positions
+                        </button>
+                        <button 
+                            className={activeTab === 'pnl' ? 'active' : ''} 
+                            onClick={() => setActiveTab('pnl')}
+                        >
+                            PnL & Risk
+                        </button>
+                    </nav>
+                    
+                    <div className="header-divider"></div>
+                    
+                    <button onClick={toggleTheme} className="theme-toggle-btn" title="Toggle Theme">
+                        {theme === 'light' ? '☾' : '☀'}
                     </button>
-                    <button 
-                        className={activeTab === 'positions' ? 'active' : ''} 
-                        onClick={() => setActiveTab('positions')}
-                    >
-                        Positions
-                    </button>
-                    <button 
-                        className={activeTab === 'pnl' ? 'active' : ''} 
-                        onClick={() => setActiveTab('pnl')}
-                    >
-                        PnL & Risk
-                    </button>
-                </nav>
-            </aside>
+                </div>
+            </header>
+            
             <main className="main-content">
-                <header className="top-header">
-                    <h2>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} View</h2>
-                    <div className="user-profile">User: Admin</div>
-                </header>
                 <div className="content-area">
                     {renderContent()}
                 </div>

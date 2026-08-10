@@ -3,22 +3,35 @@ import axios from 'axios';
 
 const TradeBlotter = () => {
     const [trades, setTrades] = useState([]);
-    
     const [securityOptions, setSecurityOptions] = useState([]);
     const [traderOptions, setTraderOptions] = useState([]);
     
     const [securityId, setSecurityId] = useState('');
     const [traderId, setTraderId] = useState('');
     
-    const DEFAULT_FROM_DATE = '2026-02-02';
-    const DEFAULT_TO_DATE = '2026-03-31';
-    const [fromDate, setFromDate] = useState(DEFAULT_FROM_DATE);
-    const [toDate, setToDate] = useState(DEFAULT_TO_DATE);
+    const MIN_DATE = '2026-02-02';
+    const MAX_DATE = '2026-03-31';
+    
+    const [fromDate, setFromDate] = useState(MIN_DATE);
+    const [toDate, setToDate] = useState(MAX_DATE);
     
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const fetchTrades = useCallback(async () => {
+        // --- DATE RANGE VALIDATION ---
+        if (fromDate < MIN_DATE || fromDate > MAX_DATE || toDate < MIN_DATE || toDate > MAX_DATE) {
+            setError(`Trades are only available between ${MIN_DATE} and ${MAX_DATE}.`);
+            setTrades([]);
+            return;
+        }
+        
+        if (fromDate > toDate) {
+            setError('From Date cannot be after To Date.');
+            setTrades([]);
+            return;
+        }
+
         setLoading(true);
         setError(null);
         try {
@@ -27,6 +40,7 @@ const TradeBlotter = () => {
             setTrades(response.data);
         } catch (err) {
             setError(err.message || 'Failed to fetch trades.');
+            setTrades([]);
         } finally {
             setLoading(false);
         }
@@ -46,7 +60,6 @@ const TradeBlotter = () => {
                 console.error(err);
             }
         };
-
         fetchDropdownData();
     }, []);
 
@@ -57,8 +70,8 @@ const TradeBlotter = () => {
     const clearFilters = () => {
         setSecurityId('');
         setTraderId('');
-        setFromDate(DEFAULT_FROM_DATE);
-        setToDate(DEFAULT_TO_DATE);
+        setFromDate(MIN_DATE);
+        setToDate(MAX_DATE);
     };
 
     return (
@@ -66,11 +79,7 @@ const TradeBlotter = () => {
             <div className="toolbar">
                 <div className="filter-group">
                     <label>Trader</label>
-                    <select 
-                        className="enterprise-select"
-                        value={traderId} 
-                        onChange={(e) => setTraderId(e.target.value)}
-                    >
+                    <select className="enterprise-select" value={traderId} onChange={(e) => setTraderId(e.target.value)}>
                         <option value="">-- All Traders --</option>
                         {traderOptions.map(trader => (
                             <option key={trader.traderId} value={trader.traderId}>
@@ -82,11 +91,7 @@ const TradeBlotter = () => {
 
                 <div className="filter-group">
                     <label>Security ID</label>
-                    <select 
-                        className="enterprise-select"
-                        value={securityId} 
-                        onChange={(e) => setSecurityId(e.target.value)}
-                    >
+                    <select className="enterprise-select" value={securityId} onChange={(e) => setSecurityId(e.target.value)}>
                         <option value="">-- All Securities --</option>
                         {securityOptions.map(id => (
                             <option key={id} value={id}>{id}</option>
@@ -100,6 +105,8 @@ const TradeBlotter = () => {
                         type="date" 
                         className="enterprise-input"
                         value={fromDate} 
+                        min={MIN_DATE}
+                        max={MAX_DATE}
                         onChange={(e) => setFromDate(e.target.value)}
                     />
                 </div>
@@ -109,7 +116,9 @@ const TradeBlotter = () => {
                     <input 
                         type="date" 
                         className="enterprise-input"
-                        value={toDate} 
+                        value={toDate}
+                        min={MIN_DATE}
+                        max={MAX_DATE}
                         onChange={(e) => setToDate(e.target.value)}
                     />
                 </div>
@@ -123,7 +132,7 @@ const TradeBlotter = () => {
             
             <div className="table-container">
                 {loading ? (
-                    <div className="loading-spinner">Loading trades...</div>
+                    <div className="text-center" style={{padding: '40px'}}>Loading trades...</div>
                 ) : (
                     <table className="enterprise-table">
                         <thead>
@@ -138,14 +147,14 @@ const TradeBlotter = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {trades.length === 0 ? (
+                            {trades.length === 0 && !error ? (
                                 <tr>
                                     <td colSpan="7" className="text-center">No trades found.</td>
                                 </tr>
                             ) : (
                                 trades.map(trade => (
-                                    <tr key={trade.tradeId}>
-                                        <td>{trade.tradeId}</td>
+                                    <tr key={trade.tradeId} className={trade.buySell === 'BUY' ? 'row-buy' : 'row-sell'}>
+                                        <td className="font-bold">{trade.tradeId}</td>
                                         <td>{new Date(trade.tradeDate).toLocaleDateString()}</td>
                                         <td>{trade.traderId}</td>
                                         <td>{trade.securityId}</td>
@@ -154,8 +163,8 @@ const TradeBlotter = () => {
                                                 {trade.buySell}
                                             </span>
                                         </td>
-                                        <td className="text-right">{trade.quantity.toLocaleString()}</td>
-                                        <td className="text-right">${trade.price.toFixed(2)}</td>
+                                        <td className="text-right font-bold">{trade.quantity.toLocaleString()}</td>
+                                        <td className="text-right">₹{trade.price.toFixed(2)}</td>
                                     </tr>
                                 ))
                             )}
