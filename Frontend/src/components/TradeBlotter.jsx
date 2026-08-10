@@ -123,7 +123,7 @@ const TradeBlotter = () => {
             
             <div className="table-container">
                 {loading ? (
-                    <div className="loading-spinner">Loading trades...</div>
+                    <div className="text-center" style={{padding: '40px'}}>Loading trades...</div>
                 ) : (
                     <table className="enterprise-table">
                         <thead>
@@ -144,8 +144,8 @@ const TradeBlotter = () => {
                                 </tr>
                             ) : (
                                 trades.map(trade => (
-                                    <tr key={trade.tradeId}>
-                                        <td>{trade.tradeId}</td>
+                                    <tr key={trade.tradeId} className={trade.buySell === 'BUY' ? 'row-buy' : 'row-sell'}>
+                                        <td className="font-bold">{trade.tradeId}</td>
                                         <td>{new Date(trade.tradeDate).toLocaleDateString()}</td>
                                         <td>{trade.traderId}</td>
                                         <td>{trade.securityId}</td>
@@ -154,8 +154,8 @@ const TradeBlotter = () => {
                                                 {trade.buySell}
                                             </span>
                                         </td>
-                                        <td className="text-right">{trade.quantity.toLocaleString()}</td>
-                                        <td className="text-right">${trade.price.toFixed(2)}</td>
+                                        <td className="text-right font-bold">{trade.quantity.toLocaleString()}</td>
+                                        <td className="text-right">₹{trade.price.toFixed(2)}</td>
                                     </tr>
                                 ))
                             )}

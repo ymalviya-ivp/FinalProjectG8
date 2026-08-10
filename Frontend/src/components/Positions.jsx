@@ -4,7 +4,6 @@ import axios from 'axios';
 const Positions = () => {
     const [positionsData, setPositionsData] = useState([]);
     
-    // Changed to standard flat arrays because the API returns an array of objects
     const [securityOptions, setSecurityOptions] = useState([]);
     const [assetClassOptions, setAssetClassOptions] = useState([]);
     
@@ -38,14 +37,12 @@ const Positions = () => {
                     axios.get('https://localhost:7021/api/Securities/securityIds'),
                     axios.get('https://localhost:7021/api/Securities/assetClasses')
                 ]);
-                
                 setSecurityOptions(securityRes.data || []);
                 setAssetClassOptions(assetClassRes.data || []);
             } catch (err) {
                 console.error("Failed to load filter options", err);
             }
         };
-
         fetchDropdownData();
     }, []);
 
@@ -61,34 +58,17 @@ const Positions = () => {
 
     const formatCurrency = (value) => {
         const num = Number(value) || 0;
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
-    };
-
-    const getAssetClassBadge = (ac) => {
-        const isEquity = ac?.toLowerCase() === 'equity';
-        return (
-            <span className="badge" style={{ 
-                backgroundColor: isEquity ? '#dbeafe' : '#f3e8ff', 
-                color: isEquity ? '#1e40af' : '#6b21a8' 
-            }}>
-                {ac}
-            </span>
-        );
+        return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(num);
     };
 
     return (
         <div className="positions-container">
-            <div className="panel" style={{ marginBottom: '20px' }}>
+            {/* --- FILTER PANEL --- */}
+            <div className="panel" style={{ marginBottom: '24px' }}>
                 <div className="toolbar">
-                    
-                    {/* Updated Security ID Dropdown */}
                     <div className="filter-group">
                         <label>Security</label>
-                        <select 
-                            className="enterprise-select"
-                            value={securityId} 
-                            onChange={(e) => setSecurityId(e.target.value)}
-                        >
+                        <select className="enterprise-select" value={securityId} onChange={(e) => setSecurityId(e.target.value)}>
                             <option value="">-- All Securities --</option>
                             {securityOptions.map(sec => (
                                 <option key={sec.securityId} value={sec.securityId}>
@@ -98,14 +78,9 @@ const Positions = () => {
                         </select>
                     </div>
 
-                    {/* Asset Class Dropdown */}
                     <div className="filter-group">
                         <label>Asset Class</label>
-                        <select 
-                            className="enterprise-select"
-                            value={assetClass} 
-                            onChange={(e) => setAssetClass(e.target.value)}
-                        >
+                        <select className="enterprise-select" value={assetClass} onChange={(e) => setAssetClass(e.target.value)}>
                             <option value="">-- All Asset Classes --</option>
                             {assetClassOptions.map(ac => (
                                 <option key={ac} value={ac}>{ac}</option>
@@ -113,16 +88,9 @@ const Positions = () => {
                         </select>
                     </div>
 
-                    {/* As Of Date Filter */}
                     <div className="filter-group">
                         <label>As Of Date</label>
-                        <input 
-                            type="date" 
-                            className="enterprise-input" 
-                            value={asOfDate} 
-                            onChange={(e) => setAsOfDate(e.target.value)}
-                            required
-                        />
+                        <input type="date" className="enterprise-input" value={asOfDate} onChange={(e) => setAsOfDate(e.target.value)} required />
                     </div>
                     
                     <div className="button-group">
@@ -131,16 +99,13 @@ const Positions = () => {
                 </div>
             </div>
 
-            {error && <div className="alert-error" style={{marginBottom: '20px'}}>{error}</div>}
+            {error && <div className="alert-error" style={{marginBottom: '24px'}}>{error}</div>}
 
+            {/* --- DATA TABLE PANEL --- */}
             <div className="panel">
-                <div className="toolbar" style={{justifyContent: 'space-between'}}>
-                    <h3>Current Positions</h3>
-                </div>
-                
                 <div className="table-container">
                     {loading ? (
-                        <div className="loading-spinner">Fetching positions data...</div>
+                        <div className="text-center" style={{padding: '40px'}}>Fetching positions data...</div>
                     ) : (
                         <table className="enterprise-table">
                             <thead>
@@ -160,10 +125,14 @@ const Positions = () => {
                                 ) : (
                                     positionsData.map((item, index) => (
                                         <tr key={index}>
-                                            <td style={{fontWeight: 'bold'}}>{item.securityId}</td>
+                                            <td className="font-bold">{item.securityId}</td>
                                             <td>{item.securityName}</td>
-                                            <td>{getAssetClassBadge(item.assetClass)}</td>
-                                            <td className="text-right font-bold" style={{ color: item.netQuantity < 0 ? '#dc2626' : 'inherit' }}>
+                                            <td>
+                                                <span className="badge" style={{ backgroundColor: 'transparent', color: 'var(--text-main)' }}>
+                                                    {item.assetClass}
+                                                </span>
+                                            </td>
+                                            <td className="text-right font-bold" style={{ color: item.netQuantity < 0 ? 'var(--danger-text)' : 'inherit' }}>
                                                 {item.netQuantity.toLocaleString()}
                                             </td>
                                             <td className="text-right">{formatCurrency(item.averageCost)}</td>

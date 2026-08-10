@@ -3,22 +3,14 @@ import axios from 'axios';
 
 const PnL = () => {
     const [pnlData, setPnlData] = useState([]);
-    
-    // Filter Options
     const [securityOptions, setSecurityOptions] = useState([]);
     
-    // Filter Values
     const DEFAULT_VALUATION_DATE = '2026-03-31';
     const [valuationDate, setValuationDate] = useState(DEFAULT_VALUATION_DATE);
     const [securityId, setSecurityId] = useState('');
     
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
-    // Calculate Summary Totals dynamically
-    const totalRealized = pnlData.reduce((sum, item) => sum + (item.realizedPnl || 0), 0);
-    const totalUnrealized = pnlData.reduce((sum, item) => sum + (item.unrealizedPnl || 0), 0);
-    const netTotalPnL = pnlData.reduce((sum, item) => sum + (item.totalPnl || 0), 0);
 
     const fetchPnL = useCallback(async () => {
         if (!valuationDate) {
@@ -29,7 +21,6 @@ const PnL = () => {
         setLoading(true);
         setError(null);
         try {
-            // Added securityId to the API call
             const url = `https://localhost:7021/api/Pnl?valuationDate=${valuationDate}&securityId=${securityId}`;
             const response = await axios.get(url);
             setPnlData(response.data);
@@ -41,7 +32,6 @@ const PnL = () => {
         }
     }, [valuationDate, securityId]);
 
-    // Fetch Security dropdown options on mount
     useEffect(() => {
         const fetchDropdownData = async () => {
             try {
@@ -55,7 +45,6 @@ const PnL = () => {
         fetchDropdownData();
     }, []);
 
-    // Auto-fetch PnL whenever filters change
     useEffect(() => {
         fetchPnL();
     }, [fetchPnL]);
@@ -67,24 +56,21 @@ const PnL = () => {
 
     const formatCurrency = (value) => {
         const num = Number(value) || 0;
-        const formatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Math.abs(num));
-        const colorClass = num >= 0 ? 'text-green' : 'text-red';
-        return <span className={colorClass}>{num < 0 ? `-${formatted}` : formatted}</span>;
+        const formatted = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(Math.abs(num));
+        const colorVar = num >= 0 ? 'var(--text-main)' : 'var(--danger-text)';
+        
+        return <span style={{ color: colorVar, fontWeight: '600' }}>
+            {num < 0 ? `-${formatted}` : formatted}
+        </span>;
     };
 
     return (
         <div className="pnl-container">
-            <div className="panel" style={{ marginBottom: '20px' }}>
+            <div className="panel" style={{ marginBottom: '24px' }}>
                 <div className="toolbar">
-                    
-                    {/* Security ID Dropdown */}
                     <div className="filter-group">
                         <label>Security</label>
-                        <select 
-                            className="enterprise-select"
-                            value={securityId} 
-                            onChange={(e) => setSecurityId(e.target.value)}
-                        >
+                        <select className="enterprise-select" value={securityId} onChange={(e) => setSecurityId(e.target.value)}>
                             <option value="">-- All Securities --</option>
                             {securityOptions.map(sec => (
                                 <option key={sec.securityId} value={sec.securityId}>
@@ -94,16 +80,9 @@ const PnL = () => {
                         </select>
                     </div>
 
-                    {/* Valuation Date Filter */}
                     <div className="filter-group">
                         <label>Valuation Date</label>
-                        <input 
-                            type="date" 
-                            className="enterprise-input" 
-                            value={valuationDate} 
-                            onChange={(e) => setValuationDate(e.target.value)}
-                            required
-                        />
+                        <input type="date" className="enterprise-input" value={valuationDate} onChange={(e) => setValuationDate(e.target.value)} required />
                     </div>
                     
                     <div className="button-group">
@@ -112,16 +91,12 @@ const PnL = () => {
                 </div>
             </div>
 
-            {error && <div className="alert-error" style={{marginTop: '20px'}}>{error}</div>}
+            {error && <div className="alert-error" style={{marginBottom: '24px'}}>{error}</div>}
 
-            <div className="panel" style={{marginTop: '20px'}}>
-                <div className="toolbar" style={{justifyContent: 'space-between'}}>
-                    <h3>PnL by Asset</h3>
-                </div>
-                
+            <div className="panel">
                 <div className="table-container">
                     {loading ? (
-                        <div className="loading-spinner">Fetching PnL data...</div>
+                        <div className="text-center" style={{padding: '40px'}}>Fetching PnL data...</div>
                     ) : (
                         <table className="enterprise-table">
                             <thead>
@@ -141,7 +116,7 @@ const PnL = () => {
                                 ) : (
                                     pnlData.map((item, index) => (
                                         <tr key={index}>
-                                            <td style={{fontWeight: 'bold'}}>{item.securityId}</td>
+                                            <td className="font-bold">{item.securityId}</td>
                                             <td>{item.securityTicker}</td>
                                             <td className="text-right">{formatCurrency(item.realizedPnl)}</td>
                                             <td className="text-right">{formatCurrency(item.unrealizedPnl)}</td>
