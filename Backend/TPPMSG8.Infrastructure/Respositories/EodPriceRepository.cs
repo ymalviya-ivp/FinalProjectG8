@@ -26,7 +26,9 @@ namespace TPPMSG8.Infrastructure.Respositories
         {
             return await _context.EodPrices
                 .AsNoTracking()
-                .Where(e => e.PriceDate == priceDate)
+                .Where(e => e.PriceDate <= priceDate)
+                .GroupBy(e => e.SecurityId)
+                .Select(g => g.OrderByDescending(e => e.PriceDate).First())
                 .ToListAsync();
         }
     }

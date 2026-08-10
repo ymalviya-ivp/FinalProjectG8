@@ -12,9 +12,9 @@ using TPPMSG8.Domain.Models;
 using TPPMSG8.Infrastructure.DataAccess;
 
 namespace TPPMSG8.Infrastructure.Respositories {
-  public class PositionsTableService : IPositionsTableService {
+  public class PTS : IPositionsTableService {
     private readonly AppDbContext _db;
-    public PositionsTableService(AppDbContext db) {
+    public PTS(AppDbContext db) {
       _db = db;
     }
 

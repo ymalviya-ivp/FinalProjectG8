@@ -7,7 +7,7 @@ namespace TPPMSG8.Api.Controllers {
   [Route("api/[controller]")]
   [ApiController]
   public class PositionsTableController : ControllerBase {
-    IPositionsTableService pts;
+    private readonly IPositionsTableService pts;
     public PositionsTableController(IPositionsTableService pts) {
       this.pts = pts;
     }
