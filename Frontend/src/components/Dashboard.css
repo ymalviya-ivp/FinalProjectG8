@@ -197,6 +197,34 @@
     background-color: var(--bg-body);
 }
 
+/* Dashboard.css - Update section 4 */
+
+.top-nav a,
+.top-nav button {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 30px; 
+    cursor: pointer;
+    text-decoration: none; /* Add this so standard link underlines don't display */
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.top-nav a:hover,
+.top-nav button:hover {
+    color: var(--text-main);
+}
+
+.top-nav a.active,
+.top-nav button.active {
+    color: var(--primary-text);
+    background-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
 /* =========================================
    5. MAIN CONTENT AREA
    ========================================= */
@@ -507,4 +535,240 @@
     height: 400px;
     width: 100%;
     padding: 20px 0;
+}
+
+/* =========================================
+   PNL COLOR UTILITIES & BADGES
+   ========================================= */
+
+/* Financial Values Color Coding */
+.pnl-val {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.text-positive {
+    color: #10b981 !important; /* Emerald Green */
+}
+
+.text-negative {
+    color: #ef4444 !important; /* Crimson Red */
+}
+
+.text-neutral {
+    color: var(--text-muted) !important;
+}
+
+/* Row Background Tints for Profit / Loss */
+.enterprise-table tbody tr.row-profit {
+    background-color: rgba(16, 185, 129, 0.025);
+}
+
+.enterprise-table tbody tr.row-loss {
+    background-color: rgba(239, 68, 68, 0.025);
+}
+
+.enterprise-table tbody tr.row-profit:hover {
+    background-color: rgba(16, 185, 129, 0.06);
+}
+
+.enterprise-table tbody tr.row-loss:hover {
+    background-color: rgba(239, 68, 68, 0.06);
+}
+
+/* KPI Summary Cards Color Borders */
+.kpi-pill {
+    border-left: 5px solid var(--border);
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.kpi-pill.kpi-border-positive {
+    border-left: 5px solid #10b981;
+}
+
+.kpi-pill.kpi-border-negative {
+    border-left: 5px solid #ef4444;
+}
+
+/* Asset Class Badges */
+.asset-tag {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.tag-equity {
+    background-color: rgba(59, 130, 246, 0.12);
+    color: #2563eb;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.tag-bond {
+    background-color: rgba(245, 158, 11, 0.12);
+    color: #d97706;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.tag-etf {
+    background-color: rgba(139, 92, 246, 0.12);
+    color: #7c3aed;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+[data-theme='dark'] .tag-equity {
+    color: #60a5fa;
+}
+
+[data-theme='dark'] .tag-bond {
+    color: #fbbf24;
+}
+
+[data-theme='dark'] .tag-etf {
+    color: #a78bfa;
+}
+
+/* =========================================
+   POSITIONS & RISK COLOR ACCENTS
+   ========================================= */
+
+/* KPI Card Border Accents */
+.kpi-pill.kpi-border-blue {
+    border-left: 5px solid #2563eb;
+}
+
+.kpi-pill.kpi-border-amber {
+    border-left: 5px solid #f59e0b;
+}
+
+.kpi-pill.kpi-border-red {
+    border-left: 5px solid #ef4444;
+}
+
+/* KPI Value Text Colors */
+.text-blue {
+    color: #2563eb !important;
+}
+
+.text-amber {
+    color: #d97706 !important;
+}
+
+.text-red {
+    color: #ef4444 !important;
+}
+
+[data-theme='dark'] .text-blue {
+    color: #60a5fa !important;
+}
+
+[data-theme='dark'] .text-amber {
+    color: #fbbf24 !important;
+}
+
+[data-theme='dark'] .text-red {
+    color: #f87171 !important;
+}
+
+/* Asset Class Badges */
+.asset-tag {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.tag-equity {
+    background-color: rgba(59, 130, 246, 0.12);
+    color: #2563eb;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.tag-bond {
+    background-color: rgba(245, 158, 11, 0.12);
+    color: #d97706;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.tag-etf {
+    background-color: rgba(139, 92, 246, 0.12);
+    color: #7c3aed;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+[data-theme='dark'] .tag-equity { color: #60a5fa; }
+[data-theme='dark'] .tag-bond { color: #fbbf24; }
+[data-theme='dark'] .tag-etf { color: #a78bfa; }
+
+/* =========================================
+   TRADE BLOTTER COLOR ACCENTS
+   ========================================= */
+
+/* BUY / SELL Badges */
+.badge-buy { 
+    background-color: rgba(16, 185, 129, 0.12) !important; 
+    color: #059669 !important; 
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+}
+
+.badge-sell { 
+    background-color: rgba(239, 68, 68, 0.12) !important; 
+    color: #dc2626 !important; 
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+[data-theme='dark'] .badge-buy {
+    color: #34d399 !important;
+}
+
+[data-theme='dark'] .badge-sell {
+    color: #f87171 !important;
+}
+
+/* Row Tints for BUY & SELL */
+.enterprise-table tbody tr.row-buy {
+    background-color: rgba(16, 185, 129, 0.02);
+}
+
+.enterprise-table tbody tr.row-sell {
+    background-color: rgba(239, 68, 68, 0.02);
+}
+
+.enterprise-table tbody tr.row-buy:hover {
+    background-color: rgba(16, 185, 129, 0.06);
+}
+
+.enterprise-table tbody tr.row-sell:hover {
+    background-color: rgba(239, 68, 68, 0.06);
+}
+
+/* Trade ID & Trader Chips */
+.trade-id-cell {
+    color: #2563eb;
+}
+
+[data-theme='dark'] .trade-id-cell {
+    color: #60a5fa;
+}
+
+.trader-chip {
+    background-color: rgba(100, 116, 139, 0.1);
+    color: var(--text-main);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    display: inline-block;
+}
+
+.price-cell {
+    font-variant-numeric: tabular-nums;
+    color: var(--text-main);
 }
