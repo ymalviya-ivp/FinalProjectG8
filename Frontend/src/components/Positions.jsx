@@ -1,88 +1,71 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
+const MIN_DATE = '2026-02-02';
+const MAX_DATE = '2026-03-31';
+
 const Positions = ({ theme }) => {
-    const [positionsData, setPositionsData] = useState([]);
-    const [securityOptions, setSecurityOptions] = useState([]);
-    const [assetClassOptions, setAssetClassOptions] = useState([]);
     const [viewMode, setViewMode] = useState('table');
-    
-    const MIN_DATE = '2026-02-02';
-    const MAX_DATE = '2026-03-31';
-    
     const [asOfDate, setAsOfDate] = useState(MAX_DATE);
     const [securityId, setSecurityId] = useState('');
     const [assetClass, setAssetClass] = useState('');
-    
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
-    const fetchPositions = useCallback(async () => {
-        if (!asOfDate) {
-            setError('Please select an As Of Date.');
-            return;
-        }
+    // Pagination State
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
 
-        // --- DATE RANGE VALIDATION ---
-        if (asOfDate < MIN_DATE || asOfDate > MAX_DATE) {
-            setError(`Data is only available between ${MIN_DATE} and ${MAX_DATE}.`);
-            setPositionsData([]);
-            return;
-        }
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [asOfDate, securityId, assetClass, pageSize]);
 
-        // --- WEEKEND VALIDATION ---
+    const { data: securityOptions = [] } = useQuery({
+        queryKey: ['securities'],
+        queryFn: async () => (await axios.get('https://localhost:7021/api/Securities/securityIds')).data,
+        staleTime: Infinity,
+    });
+
+    const { data: assetClassOptions = [] } = useQuery({
+        queryKey: ['assetClasses'],
+        queryFn: async () => (await axios.get('https://localhost:7021/api/Securities/assetClasses')).data,
+        staleTime: Infinity,
+    });
+
+    const isInvalidDate = useMemo(() => {
+        if (!asOfDate) return 'Please select an As Of Date.';
+        if (asOfDate < MIN_DATE || asOfDate > MAX_DATE) return `Data is only available between ${MIN_DATE} and ${MAX_DATE}.`;
+        
         const [year, month, day] = asOfDate.split('-');
         const dateObj = new Date(year, month - 1, day);
-        const dayOfWeek = dateObj.getDay();
-        
-        if (dayOfWeek === 0 || dayOfWeek === 6) {
-            setError("It's a weekend so markets are closed. Please select a weekday.");
-            setPositionsData([]);
-            return;
-        }
+        if (dateObj.getDay() === 0 || dateObj.getDay() === 6) return "It's a weekend so markets are closed. Please select a weekday.";
+        return null;
+    }, [asOfDate]);
 
-        setLoading(true);
-        setError(null);
-        try {
+    const { data: positionsData = [], isLoading, error: apiError } = useQuery({
+        queryKey: ['positions', asOfDate, securityId, assetClass],
+        queryFn: async () => {
             const url = `https://localhost:7021/api/PositionsTable/positions?AsOfDate=${asOfDate}&securityId=${securityId}&assetClass=${assetClass}`;
-            const response = await axios.get(url);
-            setPositionsData(response.data);
-        } catch (err) {
-            setError(err.message || 'Failed to fetch Positions data.');
-            setPositionsData([]);
-        } finally {
-            setLoading(false);
-        }
-    }, [asOfDate, securityId, assetClass]);
+            return (await axios.get(url)).data;
+        },
+        enabled: !isInvalidDate,
+    });
 
-    useEffect(() => {
-        const fetchDropdownData = async () => {
-            try {
-                const [securityRes, assetClassRes] = await Promise.all([
-                    axios.get('https://localhost:7021/api/Securities/securityIds'),
-                    axios.get('https://localhost:7021/api/Securities/assetClasses')
-                ]);
-                setSecurityOptions(securityRes.data || []);
-                setAssetClassOptions(assetClassRes.data || []);
-            } catch (err) {
-                console.error("Failed to load filter options", err);
-            }
-        };
-        fetchDropdownData();
-    }, []);
-
-    useEffect(() => {
-        fetchPositions();
-    }, [fetchPositions]);
+    // Pagination Logic
+    const totalPages = Math.ceil(positionsData.length / pageSize) || 1;
+    const paginatedPositions = useMemo(() => {
+        const startIndex = (currentPage - 1) * pageSize;
+        return positionsData.slice(startIndex, startIndex + pageSize);
+    }, [positionsData, currentPage, pageSize]);
 
     const clearFilters = () => {
         setSecurityId('');
         setAssetClass('');
         setAsOfDate(MAX_DATE);
+        setCurrentPage(1);
     };
 
     const formatCurrency = (value) => {
@@ -90,33 +73,23 @@ const Positions = ({ theme }) => {
         return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(num);
     };
 
-    const primaryBarColor = theme === 'dark' ? '#ffffff' : '#111111';
-    const axisTextColor = theme === 'dark' ? '#888888' : '#666666';
-    const gridColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)';
-
-    const chartData = {
+    const chartData = useMemo(() => ({
         labels: positionsData.map(item => item.securityId),
         datasets: [
-            {
-                label: 'Average Cost (₹)',
-                data: positionsData.map(item => item.averageCost),
-                backgroundColor: primaryBarColor,
-                borderRadius: 4,
-            },
+            { label: 'Average Cost (₹)', data: positionsData.map(item => item.averageCost), backgroundColor: theme === 'dark' ? '#ffffff' : '#111111', borderRadius: 4 },
         ],
-    };
+    }), [positionsData, theme]);
 
-    const chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { position: 'top', labels: { font: { family: 'Inter', size: 12 }, boxWidth: 14, color: axisTextColor } },
-        },
+    const chartOptions = useMemo(() => ({
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'top', labels: { color: theme === 'dark' ? '#888888' : '#666666' } } },
         scales: {
-            x: { grid: { display: false }, ticks: { color: axisTextColor } },
-            y: { grid: { color: gridColor }, ticks: { color: axisTextColor } }
+            x: { grid: { display: false }, ticks: { color: theme === 'dark' ? '#888888' : '#666666' } },
+            y: { grid: { color: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }, ticks: { color: theme === 'dark' ? '#888888' : '#666666' } }
         }
-    };
+    }), [theme]);
+
+    const displayError = isInvalidDate || (apiError ? apiError.message : null);
 
     return (
         <div className="positions-container">
@@ -126,11 +99,7 @@ const Positions = ({ theme }) => {
                         <label>Security</label>
                         <select className="enterprise-select" value={securityId} onChange={(e) => setSecurityId(e.target.value)}>
                             <option value="">-- All Securities --</option>
-                            {securityOptions.map(sec => (
-                                <option key={sec.securityId} value={sec.securityId}>
-                                    {sec.securityId} - {sec.securityName}
-                                </option>
-                            ))}
+                            {securityOptions.map(sec => <option key={sec.securityId} value={sec.securityId}>{sec.securityId} - {sec.securityName}</option>)}
                         </select>
                     </div>
 
@@ -138,23 +107,13 @@ const Positions = ({ theme }) => {
                         <label>Asset Class</label>
                         <select className="enterprise-select" value={assetClass} onChange={(e) => setAssetClass(e.target.value)}>
                             <option value="">-- All Asset Classes --</option>
-                            {assetClassOptions.map(ac => (
-                                <option key={ac} value={ac}>{ac}</option>
-                            ))}
+                            {assetClassOptions.map(ac => <option key={ac} value={ac}>{ac}</option>)}
                         </select>
                     </div>
 
                     <div className="filter-group">
                         <label>As Of Date</label>
-                        <input 
-                            type="date" 
-                            className="enterprise-input" 
-                            value={asOfDate} 
-                            min={MIN_DATE}
-                            max={MAX_DATE}
-                            onChange={(e) => setAsOfDate(e.target.value)} 
-                            required 
-                        />
+                        <input type="date" className="enterprise-input" value={asOfDate} min={MIN_DATE} max={MAX_DATE} onChange={(e) => setAsOfDate(e.target.value)} />
                     </div>
                     
                     <div className="button-group">
@@ -168,12 +127,12 @@ const Positions = ({ theme }) => {
                 </div>
             </div>
 
-            {error && <div className="alert-error" style={{marginBottom: '24px'}}>{error}</div>}
+            {displayError && <div className="alert-error" style={{marginBottom: '24px'}}>{displayError}</div>}
 
             <div className="panel">
-                {loading ? (
+                {isLoading ? (
                     <div className="text-center" style={{padding: '40px'}}>Fetching positions data...</div>
-                ) : positionsData.length === 0 && !error ? (
+                ) : positionsData.length === 0 && !displayError ? (
                     <div className="text-center" style={{padding: '40px'}}>No positions found for this date/filter.</div>
                 ) : viewMode === 'table' && positionsData.length > 0 ? (
                     <div className="table-container">
@@ -188,15 +147,11 @@ const Positions = ({ theme }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {positionsData.map((item, index) => (
+                                {paginatedPositions.map((item, index) => (
                                     <tr key={index}>
                                         <td className="font-bold">{item.securityId}</td>
                                         <td>{item.securityName}</td>
-                                        <td>
-                                            <span className="badge" style={{ backgroundColor: 'transparent', color: 'var(--text-main)' }}>
-                                                {item.assetClass}
-                                            </span>
-                                        </td>
+                                        <td><span className="badge" style={{ backgroundColor: 'transparent', color: 'var(--text-main)' }}>{item.assetClass}</span></td>
                                         <td className="text-right font-bold" style={{ color: item.netQuantity < 0 ? 'var(--danger-text)' : 'inherit' }}>
                                             {item.netQuantity.toLocaleString()}
                                         </td>
@@ -205,6 +160,26 @@ const Positions = ({ theme }) => {
                                 ))}
                             </tbody>
                         </table>
+
+                        {/* Pagination Controls */}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderTop: '1px solid var(--grid-color)' }}>
+                            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                                <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Rows per page:</span>
+                                <select className="enterprise-select" style={{ width: '70px', padding: '4px' }} value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
+                                    <option value={10}>10</option><option value={25}>25</option><option value={50}>50</option>
+                                </select>
+                            </div>
+                            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                                <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
+                                    Showing {(currentPage - 1) * pageSize + 1} to {Math.min(currentPage * pageSize, positionsData.length)} of {positionsData.length}
+                                </span>
+                                <div style={{ display: 'flex', gap: '8px' }}>
+                                    <button className="btn btn-secondary" disabled={currentPage === 1} onClick={() => setCurrentPage(p => p - 1)}>Prev</button>
+                                    <button className="btn btn-secondary" disabled={currentPage === totalPages} onClick={() => setCurrentPage(p => p + 1)}>Next</button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 ) : positionsData.length > 0 ? (
                     <div style={{ height: '400px', position: 'relative', width: '100%' }}>
