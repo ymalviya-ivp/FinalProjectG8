@@ -19,20 +19,32 @@ namespace TPPMSG8.Api.Controllers {
         [FromQuery] int? traderId,
         [FromQuery] DateOnly? fromDate,
         [FromQuery] DateOnly? toDate) {
-      var trades = await _trade.GetAllTradesAsync(securityId, traderId, fromDate, toDate);
-      return Ok(trades);
+      try {
+        var trades = await _trade.GetAllTradesAsync(securityId, traderId, fromDate, toDate);
+        return Ok(trades);
+      } catch (Exception) {
+        return StatusCode(500, "An error occurred while fetching trades.");
+      }
     }
 
     [HttpGet("securityIds")]
     public async Task<IActionResult> GetSecurityIds() {
-      var ids = await _trade.GetDistinctSecurityIdsAsync();
-      return Ok(ids);
+      try {
+        var ids = await _trade.GetDistinctSecurityIdsAsync();
+        return Ok(ids);
+      } catch (Exception ex) {
+        return StatusCode(500, $"An error occurred while fetching security IDs. {ex}");
+      }
     }
 
     [HttpGet("traderIds")] 
     public async Task<IActionResult> GetTraders() {
-      var traders = await _trade.GetDistinctTradersAsync();
-      return Ok(traders);
+      try {
+        var traders = await _trade.GetDistinctTradersAsync();
+        return Ok(traders);
+      } catch (Exception ex) {
+        return StatusCode(500, $"An error occurred while fetching traders. {ex}");
+      }
     }
   }
 }

@@ -13,8 +13,12 @@ namespace TPPMSG8.Api.Controllers {
     }
     [HttpGet("positions")]
     public async Task<IActionResult> GetPositions([FromQuery] DateOnly? asOfDate, [FromQuery] string? securityId, [FromQuery] string?assetClass) {
-      var positions = await pts.GetPositionsAsync(asOfDate, securityId, assetClass);
-      return Ok(positions);
+      try {
+        var positions = await pts.GetPositionsAsync(asOfDate, securityId, assetClass);
+        return Ok(positions);
+      } catch (Exception ex) {
+        return StatusCode(500, $"An Error occured why fetching positions data. {ex}");
+      }
     }
   }
 }

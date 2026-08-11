@@ -3,18 +3,16 @@ using System.Text.Json;
 
 namespace TPPMSG8.Api.Middleware;
 
-public class ExceptionHandlingMiddleware {
-  private readonly RequestDelegate _next;
+public class ExceptionHandlingMiddleware : IMiddleware {
   private readonly ILogger<ExceptionHandlingMiddleware> _logger;
 
-  public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger) {
-    _next = next;
+  public ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> logger) {
     _logger = logger;
   }
 
-  public async Task InvokeAsync(HttpContext context) {
+  public async Task InvokeAsync(HttpContext context, RequestDelegate next) {
     try {
-      await _next(context);
+      await next(context);
     } catch (Exception ex) {
       _logger.LogError(ex, "An unhandled exception occurred during the request.");
       await HandleExceptionAsync(context, ex);
@@ -28,8 +26,6 @@ public class ExceptionHandlingMiddleware {
     var response = new {
       StatusCode = context.Response.StatusCode,
       Message = "An internal server error occurred. Please try again later.",
-      // Note: You can expose exception.Message here if in Development, 
-      // but keep it generic in Production for security.
     };
 
     return context.Response.WriteAsync(JsonSerializer.Serialize(response));

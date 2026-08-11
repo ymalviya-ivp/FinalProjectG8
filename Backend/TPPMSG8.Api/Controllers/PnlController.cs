@@ -25,7 +25,7 @@ namespace TPPMSG8.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while calculating PnL.");
+                return StatusCode(500, $"An error occurred while calculating PnL. {ex}");
             }
         }
     }

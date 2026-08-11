@@ -9,79 +9,66 @@ using TPPMSG8.Infrastructure.DataAccess;
 using TPPMSG8.Infrastructure.Repositories;
 using TPPMSG8.Infrastructure.Respositories;
 
-namespace TPPMSG8.Api
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
+namespace TPPMSG8.Api {
+  public class Program {
+    public static void Main(string[] args) {
+      var builder = WebApplication.CreateBuilder(args);
 
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(builder.Configuration)
-                .CreateLogger();
-            
-            builder.Host.UseSerilog();
+      Log.Logger = new LoggerConfiguration()
+          .ReadFrom.Configuration(builder.Configuration)
+          .CreateLogger();
 
-            string connectionString = builder.Configuration.GetConnectionString("LogConn");
-            if (string.IsNullOrWhiteSpace(connectionString))
-            {
-                throw new InvalidOperationException("A valid connection string for 'LogConn' must be provided via configuration or environment variables.");
-            }
+      builder.Host.UseSerilog();
 
-            builder.Services.AddDbContext<AppDbContext>(context => 
-            {
-                context.UseSqlServer(connectionString);
-            });
+      string connectionString = builder.Configuration.GetConnectionString("LogConn");
+      if (string.IsNullOrWhiteSpace(connectionString)) {
+        throw new InvalidOperationException("A valid connection string for 'LogConn' must be provided via configuration or environment variables.");
+      }
 
-            // 3. Secure CORS Configuration
-            builder.Services.AddCors(options => {
-                options.AddPolicy("MyCorsPolicy", policy => {
-                    // TODO: Replace with your actual frontend URL (e.g., React/Angular app)
-                    policy.WithOrigins("http://localhost:5173") 
-                          .AllowAnyHeader()
-                          .AllowAnyMethod();
-                });
-            });
+      builder.Services.AddDbContext<AppDbContext>(context =>
+      {
+        context.UseSqlServer(connectionString);
+      });
 
-            // 4. Controllers & Features
-            builder.Services.AddControllers().AddNewtonsoftJson();
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddHealthChecks(); // Added infrastructure health checks
+      builder.Services.AddCors(options => {
+        options.AddPolicy("MyCorsPolicy", policy => {
+          policy.WithOrigins("http://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+      });
 
-      // 5. Dependency Injection (Changed to Scoped to match DbContext lifecycle)
-      // Note: If you renamed interfaces to *Repository as recommended earlier, update them here.
-            builder.Services.AddScoped<ITrade, TradeRepository>();
-            builder.Services.AddScoped<IEODPrice, EodPriceRepository>();
-            builder.Services.AddScoped<ISecurity, SecurityRepository>();
-            builder.Services.AddScoped<IPnlService, PnlService>();
-            builder.Services.AddScoped<IPositionsTableService, PositionsTableService>();
-            builder.Services.AddScoped<IPositionsRepository, PositionsRepository>();
+      builder.Services.AddControllers().AddNewtonsoftJson();
+      builder.Services.AddEndpointsApiExplorer();
+      builder.Services.AddSwaggerGen();
+      builder.Services.AddHealthChecks();
+
+      builder.Services.AddScoped<ITrade, TradeRepository>();
+      builder.Services.AddScoped<IEODPrice, EodPriceRepository>();
+      builder.Services.AddScoped<ISecurity, SecurityRepository>();
+      builder.Services.AddScoped<IPnlService, PnlService>();
+      builder.Services.AddScoped<IPositionsTableService, PositionsTableService>();
+      builder.Services.AddScoped<IPositionsRepository, PositionsRepository>();
 
       var app = builder.Build();
 
-            // 6. Global Exception Middleware (Catches crashes and returns clean 500 JSON)
-            app.UseMiddleware<ExceptionHandlingMiddleware>();
+      //app.UseMiddleware<ExceptionHandlingMiddleware>();
+      app.UseSerilogRequestLogging();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+      if (app.Environment.IsDevelopment()) {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+      }
 
-            app.UseHttpsRedirection();
+      app.UseHttpsRedirection();
+      app.UseCors("MyCorsPolicy");
 
-            // IMPORTANT: UseCors MUST be placed BEFORE UseAuthorization
-            app.UseCors("MyCorsPolicy");
-            
-            app.UseAuthorization();
+      app.UseAuthorization();
 
-            app.MapControllers();
-            app.MapHealthChecks("/health"); // Expose health status for load balancers
+      app.MapControllers();
+      app.MapHealthChecks("/health");
 
-            app.Run();
-        }
+      app.Run();
     }
+  }
 }

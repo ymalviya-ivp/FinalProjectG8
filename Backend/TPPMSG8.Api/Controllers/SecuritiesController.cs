@@ -16,15 +16,22 @@ namespace TPPMSG8.Api.Controllers {
 
     [HttpGet("securityIds")]
     public async Task<IActionResult> GetSecurityIds() {
-      // E.g., returns ["EQ01", "EQ02", "FI01"]
-      var ids = await _securityRepository.GetDistinctSecuritiesAsync();
-      return Ok(ids);
+      try {
+        var ids = await _securityRepository.GetDistinctSecuritiesAsync();
+        return Ok(ids);
+      } catch (Exception ex) {
+        return StatusCode(500, $"An error occurred while fetching security IDs. {ex}");
+      }
     }
 
     [HttpGet("assetClasses")]
     public async Task<IActionResult> GetAssetClasses() {
-      var classes = await _securityRepository.GetDistinctAssetClassesAsync();
-      return Ok(classes);
+      try {
+        var classes = await _securityRepository.GetDistinctAssetClassesAsync(); 
+        return Ok(classes);       
+      } catch (Exception ex) {
+        return StatusCode(500, $"An error occurred while fetching security IDs. {ex}");
+      }
     }
   }
 }
