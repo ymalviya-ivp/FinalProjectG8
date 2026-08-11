@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import TradeBlotter from './TradeBlotter';
-import Positions from './Positions';
-import PnL from './PnL';
 import './Dashboard.css';
+
+// Lazy load heavy chart components
+const Positions = React.lazy(() => import('./Positions'));
+const PnL = React.lazy(() => import('./PnL'));
 
 const TradingDashboard = () => {
     const [activeTab, setActiveTab] = useState('blotter');
@@ -20,16 +22,14 @@ const TradingDashboard = () => {
     };
 
     const renderContent = () => {
-        switch (activeTab) {
-            case 'blotter':
-                return <TradeBlotter theme={theme} />;
-            case 'positions':
-                return <Positions theme={theme} />;
-            case 'pnl':
-                return <PnL theme={theme} />;
-            default:
-                return <TradeBlotter theme={theme} />;
-        }
+        // Suspense provides a fallback UI while the heavy components download
+        return (
+            <Suspense fallback={<div className="text-center" style={{padding: '40px'}}>Loading module...</div>}>
+                {activeTab === 'blotter' && <TradeBlotter theme={theme} />}
+                {activeTab === 'positions' && <Positions theme={theme} />}
+                {activeTab === 'pnl' && <PnL theme={theme} />}
+            </Suspense>
+        );
     };
 
     return (
