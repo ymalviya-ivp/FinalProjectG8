@@ -37,5 +37,19 @@ namespace TPPMSG8.Tests.Controllers {
       Assert.Equal(200, result.StatusCode);
       Assert.Equal(expectedData, result.Value);
     }
+    [Fact]
+    public async Task GetPnl_ReturnsOkResultWithEmptyList_WhenNoDataExists() {
+      var testDate = new DateOnly(2026, 4, 1);
+      var securityId = "UNKNOWN";
+      _mockPnlService.Setup(s => s.GetPnlAsOfDateAsync(testDate, securityId))
+                     .ReturnsAsync(new List<PnlDto>());
+      var result = await _controller.GetPnl(testDate, securityId) as OkObjectResult;
+      Assert.NotNull(result);
+      Assert.Equal(200, result.StatusCode);
+
+      var returnedList = result.Value as IEnumerable<PnlDto>;
+      Assert.NotNull(returnedList);
+      Assert.Empty(returnedList);
+    }
   }
 }

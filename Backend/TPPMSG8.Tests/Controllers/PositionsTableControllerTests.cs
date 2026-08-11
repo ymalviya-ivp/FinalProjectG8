@@ -40,5 +40,25 @@ namespace TPPMSG8.Tests.Controllers {
       Assert.NotNull(result);
       Assert.Equal(200, result.StatusCode);
     }
+    [Fact]
+    public async Task GetPositions_ReturnsOkResultWithEmptyList_WhenFilterFindsNothing() {
+      // Arrange
+      var date = new DateOnly(2026, 3, 31);
+      var invalidAssetClass = "Crypto"; 
+
+      _mockPts.Setup(s => s.GetPositionsAsync(date, null, invalidAssetClass))
+              .ReturnsAsync(new List<PositionsTableDto>());
+
+      // Act
+      var result = await _controller.GetPositions(date, null, invalidAssetClass) as OkObjectResult;
+
+      // Assert
+      Assert.NotNull(result);
+      Assert.Equal(200, result.StatusCode);
+
+      var positions = result.Value as IEnumerable<PositionsTableDto>;
+      Assert.NotNull(positions);
+      Assert.Empty(positions);
+    }
   }
 }

@@ -9,7 +9,8 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const MIN_DATE = '2026-02-02';
 const MAX_DATE = '2026-03-31';
 
-const Positions = ({ theme }) => {
+const Positions = () => {
+    const { theme } = useOutletContext(); 
     const [viewMode, setViewMode] = useState('table');
     const [asOfDate, setAsOfDate] = useState(MAX_DATE);
     const [securityId, setSecurityId] = useState('');
@@ -41,8 +42,7 @@ const Positions = ({ theme }) => {
         
         const [year, month, day] = asOfDate.split('-');
         const dateObj = new Date(year, month - 1, day);
-        if (dateObj.getDay() === 0 || dateObj.getDay() === 6) return "It's a weekend so markets are closed. Please select a weekday.";
-        return null;
+        if (dateObj.getDay() === 0 || dateObj.getDay() === 6) return `It's a weekend so markets are closed. Showing last available positions data ie on Friday (${asOfDate})`
     }, [asOfDate]);
 
     const { data: positionsData = [], isLoading, error: apiError } = useQuery({
@@ -51,7 +51,6 @@ const Positions = ({ theme }) => {
             const url = `https://localhost:7021/api/PositionsTable/positions?AsOfDate=${asOfDate}&securityId=${securityId}&assetClass=${assetClass}`;
             return (await axios.get(url)).data;
         },
-        enabled: !isInvalidDate,
     });
 
     // React Query: Python Risk Engine (VaR)

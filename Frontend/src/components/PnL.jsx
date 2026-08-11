@@ -9,7 +9,8 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const MIN_DATE = '2026-02-02';
 const MAX_DATE = '2026-03-31';
 
-const PnL = ({ theme }) => {
+const PnL = () => {
+    const { theme } = useOutletContext(); 
     const [viewMode, setViewMode] = useState('table');
     const [valuationDate, setValuationDate] = useState(MAX_DATE);
     const [securityId, setSecurityId] = useState('');

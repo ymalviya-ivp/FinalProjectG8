@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Microsoft.Extensions.Logging; 
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,15 @@ namespace TPPMSG8.Tests.Services {
     private readonly Mock<ITrade> _mockTradeRepo;
     private readonly Mock<IEODPrice> _mockEodRepo;
     private readonly Mock<ISecurity> _mockSecurityRepo;
+    private readonly Mock<ILogger<PnlService>> _mockLogger;
 
     public PnlServiceTests() {
       _mockTradeRepo = new Mock<ITrade>();
       _mockEodRepo = new Mock<IEODPrice>();
       _mockSecurityRepo = new Mock<ISecurity>();
+      _mockLogger = new Mock<ILogger<PnlService>>();
 
-      _pnlService = new PnlService(_mockTradeRepo.Object, _mockEodRepo.Object, _mockSecurityRepo.Object);
+      _pnlService = new PnlService(_mockTradeRepo.Object, _mockEodRepo.Object, _mockSecurityRepo.Object, _mockLogger.Object);
     }
 
     [Fact]
@@ -61,6 +64,29 @@ namespace TPPMSG8.Tests.Services {
       Assert.Equal(250m, calculatedPnl.RealizedPnl);
       Assert.Equal(500m, calculatedPnl.UnrealizedPnl);
       Assert.Equal(750m, calculatedPnl.TotalPnl);
+    }
+    [Fact]
+    public async Task GetPnlAsOfDateAsync_ReturnsEmptyList_WhenNoTradesExist() {
+      // Arrange
+      var targetDate = new DateOnly(2026, 3, 31);
+
+      var dummySecurities = new List<SecuritiesDto> {
+        new SecuritiesDto { SecurityId = "EQ01", SecurityName = "Apple" }
+    };
+
+      var emptyTrades = new List<Trade>();
+      var emptyPrices = new List<EodPrice>();
+
+      _mockSecurityRepo.Setup(repo => repo.GetAllSecuritiesAsync()).ReturnsAsync(dummySecurities);
+      _mockTradeRepo.Setup(repo => repo.GetTradesAsOfDateAsync(targetDate)).ReturnsAsync(emptyTrades);
+      _mockEodRepo.Setup(repo => repo.GetEodPricesByDateAsync(targetDate)).ReturnsAsync(emptyPrices);
+
+      // Act
+      var result = (await _pnlService.GetPnlAsOfDateAsync(targetDate, null)).ToList();
+
+      // Assert
+      Assert.NotNull(result);
+      Assert.Empty(result); 
     }
   }
 }

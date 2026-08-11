@@ -1,26 +1,27 @@
 -- Functions and Views
-CREATE FUNCTION G8.fn_GetLatestEodPrices (@AsOfDate DATE)
-RETURNS TABLE
-AS
-RETURN
-(
-	-- CTE (Common Table Expression)
-    WITH RankedPrices AS (
-        SELECT 
-            SecurityId, 
-            PriceDate, 
-            ClosePrice,
-            ROW_NUMBER() OVER (PARTITION BY SecurityId ORDER BY PriceDate DESC) as RowNum
+
+Drop Function G8.fn_GetLatestEodPrices;
+
+Create or Alter Function G8.fn_GetLatestEodPrices (@AsOfDate date)
+returns @result table (
+	SecurityId nvarchar(100), 
+    PriceDate date, 
+    ClosePrice decimal(18, 4)
+)
+as
+begin
+    with RankedPrices as (
+        select SecurityId, PriceDate, ClosePrice,
+        row_number() over (partition by SecurityId order by PriceDate desc) as RowNum
         FROM G8.EOD_Prices
-        WHERE PriceDate <= @AsOfDate
+        where PriceDate <= @AsOfDate
     )
-    SELECT 
-        SecurityId, 
-        PriceDate, 
-        ClosePrice
-    FROM RankedPrices
-    WHERE RowNum = 1
-);
+	Insert into @result (SecurityId, PriceDate, ClosePrice)
+    select SecurityId, PriceDate, ClosePrice
+    from RankedPrices
+    where RowNum = 1;
+	return;
+end;
 
 Select SecurityID, PriceDate, ClosePrice
 from G8.fn_GetLatestEodPrices ('2026-02-14');

@@ -3792,3 +3792,1622 @@ ORDER BY [s].[SecurityID], [t0].[TradeID]
 2026-08-11 16:04:35.444 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/securityIds - 200 650 application/json; charset=utf-8 47.7849ms
 2026-08-11 16:04:35.445 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 44.2825 ms
 2026-08-11 16:04:35.447 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - 200 1333 application/json; charset=utf-8 50.4486ms
+2026-08-11 16:23:00.468 +05:30 [INF] Now listening on: https://localhost:7021
+2026-08-11 16:23:00.487 +05:30 [INF] Now listening on: http://localhost:5054
+2026-08-11 16:23:00.536 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-11 16:23:00.536 +05:30 [INF] Hosting environment: Development
+2026-08-11 16:23:00.537 +05:30 [INF] Content root path: C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Api
+2026-08-11 16:23:01.052 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/swagger/index.html - null null
+2026-08-11 16:23:01.167 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 37.2685 ms
+2026-08-11 16:23:01.172 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/swagger/index.html - 200 null text/html;charset=utf-8 124.6604ms
+2026-08-11 16:23:01.176 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-11 16:23:01.181 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/_framework/aspnetcore-browser-refresh.js - 200 13758 application/javascript; charset=utf-8 5.0749ms
+2026-08-11 16:23:01.182 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/_vs/browserLink - null null
+2026-08-11 16:23:01.205 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.1458ms
+2026-08-11 16:23:01.271 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/swagger/v1/swagger.json - null null
+2026-08-11 16:23:01.278 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 4.2108 ms
+2026-08-11 16:23:01.280 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 9.3225ms
+2026-08-11 16:23:44.938 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 16:23:44.939 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 16:23:44.938 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 16:23:44.950 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:23:44.950 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:23:44.951 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:23:44.955 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:23:44.955 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:23:44.955 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 16:23:44.974 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:23:44.974 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:23:44.974 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:23:45.926 +05:30 [INF] Executed DbCommand (66ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 16:23:45.957 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:23:45.989 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 16:23:45.993 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 16:23:45.993 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:23:45.996 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 16:23:46.008 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 1028.9351ms
+2026-08-11 16:23:46.009 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 1030.4116ms
+2026-08-11 16:23:46.010 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:23:46.012 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 16:23:46.013 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 1061.7707 ms
+2026-08-11 16:23:46.014 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 1066.1858 ms
+2026-08-11 16:23:46.024 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 1086.1285ms
+2026-08-11 16:23:46.024 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 1086.1297ms
+2026-08-11 16:23:46.025 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 1049.4664ms
+2026-08-11 16:23:46.032 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:23:46.033 +05:30 [INF] HTTP GET /api/Trades responded 200 in 1083.9393 ms
+2026-08-11 16:23:46.034 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 1095.3631ms
+2026-08-11 16:23:46.970 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - null null
+2026-08-11 16:23:46.970 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/securityIds - null null
+2026-08-11 16:23:46.974 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:23:46.976 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:23:46.977 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:23:46.977 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:23:46.981 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 16:23:46.982 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 16:23:47.049 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[SecurityId], [t].[SecurityName]
+FROM (
+    SELECT DISTINCT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[SecurityName]
+2026-08-11 16:23:47.051 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 16:23:47.052 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.SecuritiesDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:23:47.057 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api) in 73.5971ms
+2026-08-11 16:23:47.059 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:23:47.060 +05:30 [INF] HTTP GET /api/Securities/securityIds responded 200 in 84.2733 ms
+2026-08-11 16:23:47.062 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/securityIds - 200 650 application/json; charset=utf-8 93.3659ms
+2026-08-11 16:23:47.088 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 16:23:47.133 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 16:23:47.143 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:23:47.146 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 160.7463ms
+2026-08-11 16:23:47.147 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:23:47.148 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 174.3354 ms
+2026-08-11 16:23:47.150 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - 200 2148 application/json; charset=utf-8 180.9136ms
+2026-08-11 16:23:49.388 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId=EQ04 - null null
+2026-08-11 16:23:49.391 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:23:49.392 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:23:49.393 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 16:23:49.427 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 16:23:49.462 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 16:23:49.495 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 16:23:49.499 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:23:49.500 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 105.7247ms
+2026-08-11 16:23:49.501 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:23:49.502 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 110.7825 ms
+2026-08-11 16:23:49.504 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId=EQ04 - 200 193 application/json; charset=utf-8 116.1899ms
+2026-08-11 16:24:30.467 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId=ET02 - null null
+2026-08-11 16:24:30.469 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:24:30.470 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:24:30.470 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 16:24:30.503 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 16:24:30.535 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 16:24:30.566 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 16:24:30.567 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:24:30.568 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 96.881ms
+2026-08-11 16:24:30.569 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:24:30.570 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 100.9115 ms
+2026-08-11 16:24:30.571 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId=ET02 - 200 186 application/json; charset=utf-8 103.996ms
+2026-08-11 16:24:46.704 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-02-26&securityId=EQ04 - null null
+2026-08-11 16:24:46.707 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:24:46.707 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:24:46.708 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 16:24:46.739 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 16:24:46.769 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 16:24:46.799 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 16:24:46.801 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:24:46.802 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 93.0423ms
+2026-08-11 16:24:46.802 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:24:46.804 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 97.0200 ms
+2026-08-11 16:24:46.805 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-02-26&securityId=EQ04 - 200 198 application/json; charset=utf-8 100.9976ms
+2026-08-11 16:25:03.127 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-02-26&securityId= - null null
+2026-08-11 16:25:03.131 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:25:03.132 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:25:03.133 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 16:25:03.164 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 16:25:03.193 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 16:25:03.225 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 16:25:03.227 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:25:03.228 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 94.2404ms
+2026-08-11 16:25:03.229 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:25:03.230 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 98.8316 ms
+2026-08-11 16:25:03.231 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-02-26&securityId= - 200 2148 application/json; charset=utf-8 104.5479ms
+2026-08-11 16:25:30.639 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-26&securityId= - null null
+2026-08-11 16:25:30.644 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:25:30.644 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:25:30.645 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 16:25:30.675 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 16:25:30.706 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 16:25:30.737 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 16:25:30.738 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:25:30.739 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 93.589ms
+2026-08-11 16:25:30.740 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:25:30.741 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 97.4183 ms
+2026-08-11 16:25:30.742 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-26&securityId= - 200 2154 application/json; charset=utf-8 103.6605ms
+2026-08-11 16:52:43.107 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - null null
+2026-08-11 16:52:43.107 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - null null
+2026-08-11 16:52:43.111 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:52:43.112 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:52:43.112 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:52:43.112 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 16:52:43.114 +05:30 [INF] Route matched with {action = "GetAssetClasses", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAssetClasses() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 16:52:43.114 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:52:43.267 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[AssetClass]
+FROM (
+    SELECT DISTINCT [s].[AssetClass]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[AssetClass]
+2026-08-11 16:52:43.269 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 16:52:43.269 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api) in 153.9637ms
+2026-08-11 16:52:43.270 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 16:52:43.271 +05:30 [INF] HTTP GET /api/Securities/assetClasses responded 200 in 159.3166 ms
+2026-08-11 16:52:43.272 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - 200 23 application/json; charset=utf-8 164.8672ms
+2026-08-11 16:52:43.384 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[@__asOfDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_0
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:52:43.413 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:52:43.416 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 299.0623ms
+2026-08-11 16:52:43.418 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:52:43.418 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 307.4862 ms
+2026-08-11 16:52:43.419 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - 200 1333 application/json; charset=utf-8 312.2541ms
+2026-08-11 16:56:42.177 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 16:56:42.179 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 16:56:42.177 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 16:56:42.184 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:56:42.184 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 16:56:42.187 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:56:42.188 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:56:42.188 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:56:42.190 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:56:42.190 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:56:42.190 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 16:56:42.191 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:56:42.191 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:56:42.192 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:56:42.192 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:56:42.195 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:56:42.224 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 16:56:42.226 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 16:56:42.226 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 16:56:42.227 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 32.8235ms
+2026-08-11 16:56:42.229 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:56:42.229 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:56:42.231 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 48.1177 ms
+2026-08-11 16:56:42.232 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 55.2373ms
+2026-08-11 16:56:42.233 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 37.4477ms
+2026-08-11 16:56:42.235 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:56:42.235 +05:30 [INF] HTTP GET /api/Trades responded 200 in 48.4472 ms
+2026-08-11 16:56:42.236 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 57.1148ms
+2026-08-11 16:56:42.347 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 16:56:42.348 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 16:56:42.350 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:56:42.352 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:56:42.353 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 155.2161ms
+2026-08-11 16:56:42.355 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 16:56:42.357 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 168.9226 ms
+2026-08-11 16:56:42.359 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 181.9924ms
+2026-08-11 16:56:42.359 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 159.4542ms
+2026-08-11 16:56:42.362 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:56:42.362 +05:30 [INF] HTTP GET /api/Trades responded 200 in 172.4713 ms
+2026-08-11 16:56:42.363 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 179.4435ms
+2026-08-11 16:56:44.102 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - null null
+2026-08-11 16:56:44.102 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/securityIds - null null
+2026-08-11 16:56:44.102 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - null null
+2026-08-11 16:56:44.105 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:56:44.106 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:56:44.107 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:56:44.107 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 16:56:44.107 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:56:44.108 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:56:44.108 +05:30 [INF] Route matched with {action = "GetAssetClasses", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAssetClasses() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 16:56:44.109 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 16:56:44.109 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:56:44.139 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[AssetClass]
+FROM (
+    SELECT DISTINCT [s].[AssetClass]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[AssetClass]
+2026-08-11 16:56:44.141 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[SecurityId], [t].[SecurityName]
+FROM (
+    SELECT DISTINCT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[SecurityName]
+2026-08-11 16:56:44.141 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 16:56:44.143 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.SecuritiesDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:56:44.143 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api) in 32.9587ms
+2026-08-11 16:56:44.144 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api) in 32.6642ms
+2026-08-11 16:56:44.144 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@__asOfDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_0
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:56:44.144 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 16:56:44.145 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:56:44.146 +05:30 [INF] HTTP GET /api/Securities/assetClasses responded 200 in 41.8866 ms
+2026-08-11 16:56:44.147 +05:30 [INF] HTTP GET /api/Securities/securityIds responded 200 in 41.2555 ms
+2026-08-11 16:56:44.148 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - 200 23 application/json; charset=utf-8 45.6171ms
+2026-08-11 16:56:44.149 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/securityIds - 200 650 application/json; charset=utf-8 46.772ms
+2026-08-11 16:56:44.172 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:56:44.173 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 60.0108ms
+2026-08-11 16:56:44.174 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:56:44.174 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 67.7462 ms
+2026-08-11 16:56:44.175 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - 200 1333 application/json; charset=utf-8 73.3129ms
+2026-08-11 16:56:45.262 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=ET03&assetClass= - null null
+2026-08-11 16:56:45.264 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:56:45.264 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:56:45.265 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:56:45.306 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:56:45.308 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:56:45.310 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 44.0631ms
+2026-08-11 16:56:45.311 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:56:45.311 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 47.8654 ms
+2026-08-11 16:56:45.313 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=ET03&assetClass= - 200 119 application/json; charset=utf-8 51.1012ms
+2026-08-11 16:58:20.167 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-07&securityId=ET03&assetClass= - null null
+2026-08-11 16:58:20.170 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:58:20.171 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:58:20.171 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:58:20.202 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:58:20.204 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:58:20.204 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 32.207ms
+2026-08-11 16:58:20.205 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:58:20.206 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 35.8618 ms
+2026-08-11 16:58:20.207 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-07&securityId=ET03&assetClass= - 200 120 application/json; charset=utf-8 40.2355ms
+2026-08-11 16:58:36.341 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-06&securityId=ET03&assetClass= - null null
+2026-08-11 16:58:36.343 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:58:36.344 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:58:36.344 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:58:36.376 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:58:36.377 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:58:36.378 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 32.524ms
+2026-08-11 16:58:36.378 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:58:36.379 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 36.2384 ms
+2026-08-11 16:58:36.381 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-06&securityId=ET03&assetClass= - 200 120 application/json; charset=utf-8 39.5826ms
+2026-08-11 16:58:49.186 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-14&securityId=ET03&assetClass= - null null
+2026-08-11 16:58:49.188 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:58:49.189 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:58:49.189 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:58:49.220 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:58:49.222 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:58:49.223 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 32.9792ms
+2026-08-11 16:58:49.225 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:58:49.226 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 38.1275 ms
+2026-08-11 16:58:49.228 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-14&securityId=ET03&assetClass= - 200 120 application/json; charset=utf-8 41.9273ms
+2026-08-11 16:58:54.449 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-13&securityId=ET03&assetClass= - null null
+2026-08-11 16:58:54.452 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:58:54.452 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:58:54.453 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:58:54.484 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:58:54.486 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:58:54.487 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 33.1251ms
+2026-08-11 16:58:54.488 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:58:54.489 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 37.1826 ms
+2026-08-11 16:58:54.490 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-13&securityId=ET03&assetClass= - 200 120 application/json; charset=utf-8 41.7779ms
+2026-08-11 16:58:57.690 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-12&securityId=ET03&assetClass= - null null
+2026-08-11 16:58:57.693 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:58:57.694 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:58:57.695 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:58:57.726 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:58:57.729 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:58:57.729 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 33.7938ms
+2026-08-11 16:58:57.730 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:58:57.731 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 37.9123 ms
+2026-08-11 16:58:57.733 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-12&securityId=ET03&assetClass= - 200 120 application/json; charset=utf-8 42.1706ms
+2026-08-11 16:58:59.973 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 16:58:59.974 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 16:58:59.979 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:58:59.974 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 16:58:59.978 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 16:58:59.982 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:58:59.983 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:58:59.984 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:58:59.986 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:58:59.986 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:58:59.987 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:58:59.987 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 16:58:59.987 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:58:59.988 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:58:59.990 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:58:59.991 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:59:00.018 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 16:59:00.020 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 16:59:00.020 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 31.3313ms
+2026-08-11 16:59:00.021 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:59:00.022 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 43.6119 ms
+2026-08-11 16:59:00.023 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 16:59:00.025 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 16:59:00.025 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 51.9622ms
+2026-08-11 16:59:00.027 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:00.027 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:00.030 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 36.0484ms
+2026-08-11 16:59:00.031 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 16:59:00.032 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 38.575ms
+2026-08-11 16:59:00.032 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 47.6841 ms
+2026-08-11 16:59:00.032 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:59:00.033 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 59.4123ms
+2026-08-11 16:59:00.034 +05:30 [INF] HTTP GET /api/Trades responded 200 in 51.5102 ms
+2026-08-11 16:59:00.037 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 63.2149ms
+2026-08-11 16:59:00.150 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 16:59:00.154 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:00.161 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 163.545ms
+2026-08-11 16:59:00.161 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:59:00.162 +05:30 [INF] HTTP GET /api/Trades responded 200 in 176.3271 ms
+2026-08-11 16:59:00.164 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 185.3342ms
+2026-08-11 16:59:03.449 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=3&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 16:59:03.452 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:03.452 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:59:03.453 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:59:03.488 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__traderId_Value_0='?' (DbType = Int32), @__fromDate_Value_1='?' (DbType = Date), @__toDate_Value_2='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TraderID] = @__traderId_Value_0 AND [t].[TradeDate] >= @__fromDate_Value_1 AND [t].[TradeDate] <= @__toDate_Value_2
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 16:59:03.490 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:03.492 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 38.1947ms
+2026-08-11 16:59:03.493 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:59:03.493 +05:30 [INF] HTTP GET /api/Trades responded 200 in 41.4858 ms
+2026-08-11 16:59:03.494 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=3&fromDate=2026-02-02&toDate=2026-03-31 - 200 10172 application/json; charset=utf-8 45.0095ms
+2026-08-11 16:59:05.857 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=3&fromDate=2026-02-28&toDate=2026-03-31 - null null
+2026-08-11 16:59:05.858 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:05.859 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:59:05.859 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:59:05.890 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__traderId_Value_0='?' (DbType = Int32), @__fromDate_Value_1='?' (DbType = Date), @__toDate_Value_2='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TraderID] = @__traderId_Value_0 AND [t].[TradeDate] >= @__fromDate_Value_1 AND [t].[TradeDate] <= @__toDate_Value_2
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 16:59:05.891 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:05.892 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 32.4572ms
+2026-08-11 16:59:05.893 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:59:05.894 +05:30 [INF] HTTP GET /api/Trades responded 200 in 35.5251 ms
+2026-08-11 16:59:05.895 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=3&fromDate=2026-02-28&toDate=2026-03-31 - 200 4567 application/json; charset=utf-8 38.0806ms
+2026-08-11 16:59:11.205 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/securityIds - null null
+2026-08-11 16:59:11.205 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - null null
+2026-08-11 16:59:11.205 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - null null
+2026-08-11 16:59:11.206 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:11.207 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:11.208 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:11.209 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:59:11.209 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 16:59:11.209 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:11.210 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 16:59:11.210 +05:30 [INF] Route matched with {action = "GetAssetClasses", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAssetClasses() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 16:59:11.211 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:59:11.240 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[SecurityId], [t].[SecurityName]
+FROM (
+    SELECT DISTINCT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[SecurityName]
+2026-08-11 16:59:11.241 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.SecuritiesDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:11.242 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api) in 30.7689ms
+2026-08-11 16:59:11.243 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[AssetClass]
+FROM (
+    SELECT DISTINCT [s].[AssetClass]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[AssetClass]
+2026-08-11 16:59:11.243 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:59:11.244 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 16:59:11.244 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@__asOfDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_0
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:59:11.245 +05:30 [INF] HTTP GET /api/Securities/securityIds responded 200 in 38.6285 ms
+2026-08-11 16:59:11.245 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api) in 33.389ms
+2026-08-11 16:59:11.249 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/securityIds - 200 650 application/json; charset=utf-8 44.4661ms
+2026-08-11 16:59:11.250 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 16:59:11.254 +05:30 [INF] HTTP GET /api/Securities/assetClasses responded 200 in 46.6958 ms
+2026-08-11 16:59:11.255 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - 200 23 application/json; charset=utf-8 50.483ms
+2026-08-11 16:59:11.272 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:11.273 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 59.0764ms
+2026-08-11 16:59:11.275 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:11.276 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 67.4645 ms
+2026-08-11 16:59:11.277 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - 200 1333 application/json; charset=utf-8 72.4428ms
+2026-08-11 16:59:12.557 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=ET02&assetClass= - null null
+2026-08-11 16:59:12.560 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:12.561 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:12.562 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:59:12.593 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:59:12.595 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:12.596 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 33.0774ms
+2026-08-11 16:59:12.597 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:12.598 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 38.2320 ms
+2026-08-11 16:59:12.600 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=ET02&assetClass= - 200 109 application/json; charset=utf-8 43.1477ms
+2026-08-11 16:59:15.980 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-14&securityId=ET02&assetClass= - null null
+2026-08-11 16:59:15.983 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:15.983 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:15.984 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:59:16.014 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:59:16.016 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:16.017 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 32.4841ms
+2026-08-11 16:59:16.018 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:16.018 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 35.5194 ms
+2026-08-11 16:59:16.019 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-14&securityId=ET02&assetClass= - 200 108 application/json; charset=utf-8 39.4323ms
+2026-08-11 16:59:19.900 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-13&securityId=ET02&assetClass= - null null
+2026-08-11 16:59:19.903 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:19.903 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:19.904 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:59:19.935 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:59:19.938 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:19.939 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 34.3429ms
+2026-08-11 16:59:19.940 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:19.941 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 38.0408 ms
+2026-08-11 16:59:19.941 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-13&securityId=ET02&assetClass= - 200 108 application/json; charset=utf-8 41.8217ms
+2026-08-11 16:59:22.466 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-12&securityId=ET02&assetClass= - null null
+2026-08-11 16:59:22.468 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:22.468 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:22.469 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:59:22.499 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:59:22.501 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:22.501 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 31.7745ms
+2026-08-11 16:59:22.502 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:22.503 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 34.9606 ms
+2026-08-11 16:59:22.504 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-12&securityId=ET02&assetClass= - 200 108 application/json; charset=utf-8 38.3985ms
+2026-08-11 16:59:24.234 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-11&securityId=ET02&assetClass= - null null
+2026-08-11 16:59:24.236 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:24.236 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:24.237 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:59:24.268 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:59:24.270 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:24.271 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 32.9409ms
+2026-08-11 16:59:24.272 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:24.272 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 36.2683 ms
+2026-08-11 16:59:24.273 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-11&securityId=ET02&assetClass= - 200 108 application/json; charset=utf-8 40.1757ms
+2026-08-11 16:59:50.652 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-15&securityId=ET02&assetClass= - null null
+2026-08-11 16:59:50.654 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:50.655 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:50.655 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:59:50.686 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:59:50.689 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:50.690 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 33.9716ms
+2026-08-11 16:59:50.692 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:50.693 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 39.0742 ms
+2026-08-11 16:59:50.696 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-15&securityId=ET02&assetClass= - 200 108 application/json; charset=utf-8 44.0615ms
+2026-08-11 16:59:52.858 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-16&securityId=ET02&assetClass= - null null
+2026-08-11 16:59:52.860 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:52.860 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:52.860 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:59:52.891 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:59:52.892 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:52.893 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 31.7412ms
+2026-08-11 16:59:52.894 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:52.894 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 34.8353 ms
+2026-08-11 16:59:52.895 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-16&securityId=ET02&assetClass= - 200 109 application/json; charset=utf-8 37.5493ms
+2026-08-11 16:59:55.217 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 16:59:55.217 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 16:59:55.217 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 16:59:55.217 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 16:59:55.221 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:55.222 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:55.223 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:55.225 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:55.225 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:59:55.226 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:59:55.226 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 16:59:55.227 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:59:55.227 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:59:55.228 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:59:55.228 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:59:55.229 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 16:59:55.267 +05:30 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 16:59:55.267 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 16:59:55.268 +05:30 [INF] Executed DbCommand (35ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 16:59:55.269 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 16:59:55.273 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:55.268 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 16:59:55.272 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:55.275 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:55.276 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 46.1821ms
+2026-08-11 16:59:55.278 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 45.0145ms
+2026-08-11 16:59:55.279 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:59:55.280 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 16:59:55.282 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 61.2189 ms
+2026-08-11 16:59:55.283 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 59.9912 ms
+2026-08-11 16:59:55.278 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 46.1974ms
+2026-08-11 16:59:55.284 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 48.2891ms
+2026-08-11 16:59:55.284 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 67.8761ms
+2026-08-11 16:59:55.286 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 69.0728ms
+2026-08-11 16:59:55.287 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:59:55.287 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 16:59:55.292 +05:30 [INF] HTTP GET /api/Trades responded 200 in 69.5240 ms
+2026-08-11 16:59:55.292 +05:30 [INF] HTTP GET /api/Trades responded 200 in 67.3659 ms
+2026-08-11 16:59:55.293 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 75.5147ms
+2026-08-11 16:59:55.294 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 76.3878ms
+2026-08-11 16:59:56.774 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/securityIds - null null
+2026-08-11 16:59:56.774 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - null null
+2026-08-11 16:59:56.775 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:56.776 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:56.777 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:59:56.777 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:59:56.778 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 16:59:56.779 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 16:59:56.809 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[SecurityId], [t].[SecurityName]
+FROM (
+    SELECT DISTINCT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[SecurityName]
+2026-08-11 16:59:56.810 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.SecuritiesDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:56.811 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api) in 30.878ms
+2026-08-11 16:59:56.811 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 16:59:56.812 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 16:59:56.814 +05:30 [INF] HTTP GET /api/Securities/securityIds responded 200 in 38.5064 ms
+2026-08-11 16:59:56.815 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/securityIds - 200 650 application/json; charset=utf-8 41.8296ms
+2026-08-11 16:59:56.842 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 16:59:56.873 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 16:59:56.875 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:56.876 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 93.7249ms
+2026-08-11 16:59:56.878 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 16:59:56.879 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 102.3348 ms
+2026-08-11 16:59:56.881 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - 200 2148 application/json; charset=utf-8 107.5211ms
+2026-08-11 16:59:58.509 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - null null
+2026-08-11 16:59:58.509 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - null null
+2026-08-11 16:59:58.513 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:58.514 +05:30 [INF] CORS policy execution successful.
+2026-08-11 16:59:58.514 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 16:59:58.515 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:58.515 +05:30 [INF] Route matched with {action = "GetAssetClasses", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAssetClasses() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 16:59:58.516 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 16:59:58.545 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[AssetClass]
+FROM (
+    SELECT DISTINCT [s].[AssetClass]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[AssetClass]
+2026-08-11 16:59:58.547 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 16:59:58.548 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api) in 31.5479ms
+2026-08-11 16:59:58.549 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__asOfDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_0
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 16:59:58.550 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 16:59:58.552 +05:30 [INF] HTTP GET /api/Securities/assetClasses responded 200 in 39.3089 ms
+2026-08-11 16:59:58.553 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 16:59:58.553 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - 200 23 application/json; charset=utf-8 44.9175ms
+2026-08-11 16:59:58.555 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 36.2215ms
+2026-08-11 16:59:58.560 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 16:59:58.560 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 46.4087 ms
+2026-08-11 16:59:58.562 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - 200 1333 application/json; charset=utf-8 53.0022ms
+2026-08-11 17:52:21.325 +05:30 [INF] Now listening on: https://localhost:7021
+2026-08-11 17:52:21.344 +05:30 [INF] Now listening on: http://localhost:5054
+2026-08-11 17:52:21.394 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-11 17:52:21.395 +05:30 [INF] Hosting environment: Development
+2026-08-11 17:52:21.396 +05:30 [INF] Content root path: C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Api
+2026-08-11 17:52:21.802 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/swagger/index.html - null null
+2026-08-11 17:52:21.913 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 36.1283 ms
+2026-08-11 17:52:21.917 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/swagger/index.html - 200 null text/html;charset=utf-8 120.0851ms
+2026-08-11 17:52:21.923 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-11 17:52:21.926 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/_vs/browserLink - null null
+2026-08-11 17:52:21.929 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/_framework/aspnetcore-browser-refresh.js - 200 13758 application/javascript; charset=utf-8 6.247ms
+2026-08-11 17:52:21.951 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/_vs/browserLink - 200 null text/javascript; charset=UTF-8 25.361ms
+2026-08-11 17:52:21.971 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/swagger/v1/swagger.json - null null
+2026-08-11 17:52:21.976 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 3.2571 ms
+2026-08-11 17:52:21.978 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 7.6254ms
+2026-08-11 18:09:02.548 +05:30 [INF] Now listening on: https://localhost:7021
+2026-08-11 18:09:02.568 +05:30 [INF] Now listening on: http://localhost:5054
+2026-08-11 18:09:02.617 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-11 18:09:02.618 +05:30 [INF] Hosting environment: Development
+2026-08-11 18:09:02.618 +05:30 [INF] Content root path: C:\Users\ymalviya\Desktop\TPPMSG8\Backend\TPPMSG8.Api
+2026-08-11 18:09:03.053 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/swagger/index.html - null null
+2026-08-11 18:09:03.171 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 36.9671 ms
+2026-08-11 18:09:03.175 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/swagger/index.html - 200 null text/html;charset=utf-8 125.8975ms
+2026-08-11 18:09:03.185 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-11 18:09:03.189 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/_vs/browserLink - null null
+2026-08-11 18:09:03.190 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/_framework/aspnetcore-browser-refresh.js - 200 13758 application/javascript; charset=utf-8 5.7398ms
+2026-08-11 18:09:03.212 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.0045ms
+2026-08-11 18:09:03.234 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/swagger/v1/swagger.json - null null
+2026-08-11 18:09:03.240 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 3.4403 ms
+2026-08-11 18:09:03.241 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 7.6915ms
+2026-08-11 18:09:07.841 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:09:07.841 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 18:09:07.841 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 18:09:07.849 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:09:07.849 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:09:07.849 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:09:07.851 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:09:07.851 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:09:07.851 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:09:07.867 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:09:07.867 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:09:07.867 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:09:08.859 +05:30 [INF] Executed DbCommand (63ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:09:08.890 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:09:08.921 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 18:09:08.923 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 18:09:08.924 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 18:09:08.926 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:09:08.944 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 1072.3315ms
+2026-08-11 18:09:08.946 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:09:08.948 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 1077.1352ms
+2026-08-11 18:09:08.948 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 1100.1589 ms
+2026-08-11 18:09:08.949 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:09:08.950 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 1103.8413 ms
+2026-08-11 18:09:08.955 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 1114.87ms
+2026-08-11 18:09:08.955 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 1114.856ms
+2026-08-11 18:09:08.968 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 1096.3822ms
+2026-08-11 18:09:08.969 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:09:08.970 +05:30 [INF] HTTP GET /api/Trades responded 200 in 1123.9376 ms
+2026-08-11 18:09:08.971 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 1130.2613ms
+2026-08-11 18:12:45.215 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=3&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:12:45.219 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:12:45.220 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:12:45.220 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:12:45.299 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__traderId_Value_0='?' (DbType = Int32), @__fromDate_Value_1='?' (DbType = Date), @__toDate_Value_2='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TraderID] = @__traderId_Value_0 AND [t].[TradeDate] >= @__fromDate_Value_1 AND [t].[TradeDate] <= @__toDate_Value_2
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:12:45.301 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:12:45.303 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 82.1352ms
+2026-08-11 18:12:45.308 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:12:45.308 +05:30 [INF] HTTP GET /api/Trades responded 200 in 89.1833 ms
+2026-08-11 18:12:45.309 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=3&fromDate=2026-02-02&toDate=2026-03-31 - 200 10172 application/json; charset=utf-8 94.5317ms
+2026-08-11 18:14:36.016 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=1&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:14:36.020 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:14:36.021 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:14:36.021 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:14:36.058 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__traderId_Value_0='?' (DbType = Int32), @__fromDate_Value_1='?' (DbType = Date), @__toDate_Value_2='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TraderID] = @__traderId_Value_0 AND [t].[TradeDate] >= @__fromDate_Value_1 AND [t].[TradeDate] <= @__toDate_Value_2
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:14:36.061 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:14:36.065 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 41.7658ms
+2026-08-11 18:14:36.067 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:14:36.068 +05:30 [INF] HTTP GET /api/Trades responded 200 in 48.2271 ms
+2026-08-11 18:14:36.069 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=1&fromDate=2026-02-02&toDate=2026-03-31 - 200 10490 application/json; charset=utf-8 53.8972ms
+2026-08-11 18:14:51.868 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=BD03&traderId=1&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:14:51.871 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:14:51.872 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:14:51.872 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:14:51.908 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__securityId_0='?' (Size = 10), @__traderId_Value_1='?' (DbType = Int32), @__fromDate_Value_2='?' (DbType = Date), @__toDate_Value_3='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[SecurityID] = @__securityId_0 AND [t].[TraderID] = @__traderId_Value_1 AND [t].[TradeDate] >= @__fromDate_Value_2 AND [t].[TradeDate] <= @__toDate_Value_3
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:14:51.911 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:14:51.912 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 38.7069ms
+2026-08-11 18:14:51.914 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:14:51.915 +05:30 [INF] HTTP GET /api/Trades responded 200 in 44.0335 ms
+2026-08-11 18:14:51.917 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=BD03&traderId=1&fromDate=2026-02-02&toDate=2026-03-31 - 200 915 application/json; charset=utf-8 48.5334ms
+2026-08-11 18:15:11.162 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=BD03&traderId=1&fromDate=2026-03-02&toDate=2026-03-31 - null null
+2026-08-11 18:15:11.164 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:15:11.164 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:15:11.165 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:15:11.196 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__securityId_0='?' (Size = 10), @__traderId_Value_1='?' (DbType = Int32), @__fromDate_Value_2='?' (DbType = Date), @__toDate_Value_3='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[SecurityID] = @__securityId_0 AND [t].[TraderID] = @__traderId_Value_1 AND [t].[TradeDate] >= @__fromDate_Value_2 AND [t].[TradeDate] <= @__toDate_Value_3
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:15:11.197 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:15:11.199 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 32.622ms
+2026-08-11 18:15:11.199 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:15:11.201 +05:30 [INF] HTTP GET /api/Trades responded 200 in 36.7781 ms
+2026-08-11 18:15:11.202 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=BD03&traderId=1&fromDate=2026-03-02&toDate=2026-03-31 - 200 459 application/json; charset=utf-8 40.283ms
+2026-08-11 18:16:56.249 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=BD03&traderId=1&fromDate=2026-03-31&toDate=2026-03-31 - null null
+2026-08-11 18:16:56.253 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:16:56.253 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:16:56.254 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:16:56.287 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__securityId_0='?' (Size = 10), @__traderId_Value_1='?' (DbType = Int32), @__fromDate_Value_2='?' (DbType = Date), @__toDate_Value_3='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[SecurityID] = @__securityId_0 AND [t].[TraderID] = @__traderId_Value_1 AND [t].[TradeDate] >= @__fromDate_Value_2 AND [t].[TradeDate] <= @__toDate_Value_3
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:16:56.288 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:16:56.289 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 34.5574ms
+2026-08-11 18:16:56.290 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:16:56.293 +05:30 [INF] HTTP GET /api/Trades responded 200 in 40.5796 ms
+2026-08-11 18:16:56.294 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=BD03&traderId=1&fromDate=2026-03-31&toDate=2026-03-31 - 200 2 application/json; charset=utf-8 45.0615ms
+2026-08-11 18:17:37.993 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:17:37.997 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:17:37.998 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:17:37.998 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:17:38.035 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:17:38.037 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:17:38.046 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 46.8231ms
+2026-08-11 18:17:38.047 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:17:38.047 +05:30 [INF] HTTP GET /api/Trades responded 200 in 50.0614 ms
+2026-08-11 18:17:38.048 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 55.2999ms
+2026-08-11 18:18:46.820 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/securityIds - null null
+2026-08-11 18:18:46.820 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - null null
+2026-08-11 18:18:46.825 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:18:46.820 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - null null
+2026-08-11 18:18:46.829 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:18:46.829 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:18:46.831 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 18:18:46.831 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:18:46.832 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 18:18:46.834 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 18:18:46.834 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 18:18:46.834 +05:30 [INF] Route matched with {action = "GetAssetClasses", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAssetClasses() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 18:18:46.869 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[SecurityId], [t].[SecurityName]
+FROM (
+    SELECT DISTINCT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[SecurityName]
+2026-08-11 18:18:46.872 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.SecuritiesDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:18:46.874 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api) in 39.77ms
+2026-08-11 18:18:46.875 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:18:46.877 +05:30 [INF] HTTP GET /api/Securities/securityIds responded 200 in 51.7789 ms
+2026-08-11 18:18:46.878 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/securityIds - 200 650 application/json; charset=utf-8 58.1603ms
+2026-08-11 18:18:46.932 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[@__asOfDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_0
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 18:18:46.941 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:18:46.943 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 107.636ms
+2026-08-11 18:18:46.944 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 18:18:46.945 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 115.2264 ms
+2026-08-11 18:18:46.945 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - 200 1333 application/json; charset=utf-8 124.9768ms
+2026-08-11 18:18:46.993 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[AssetClass]
+FROM (
+    SELECT DISTINCT [s].[AssetClass]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[AssetClass]
+2026-08-11 18:18:46.996 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 18:18:46.997 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api) in 160.8633ms
+2026-08-11 18:18:46.998 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 18:18:46.999 +05:30 [INF] HTTP GET /api/Securities/assetClasses responded 200 in 168.0185 ms
+2026-08-11 18:18:47.000 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - 200 23 application/json; charset=utf-8 179.7215ms
+2026-08-11 18:19:30.687 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=ET03&assetClass= - null null
+2026-08-11 18:19:30.691 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:19:30.692 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 18:19:30.692 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 18:19:30.731 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[@__asOfDate_1='?' (DbType = Date), @__securityId_0='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_1
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+WHERE [s].[SecurityID] = @__securityId_0
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 18:19:30.733 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:19:30.733 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 40.123ms
+2026-08-11 18:19:30.734 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 18:19:30.737 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 46.0534 ms
+2026-08-11 18:19:30.738 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=ET03&assetClass= - 200 119 application/json; charset=utf-8 51.467ms
+2026-08-11 18:20:22.082 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - null null
+2026-08-11 18:20:22.086 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:20:22.086 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 18:20:22.089 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 18:20:22.126 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 18:20:22.162 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 18:20:22.208 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 18:20:22.216 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:20:22.219 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 128.5287ms
+2026-08-11 18:20:22.220 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 18:20:22.221 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 135.0734 ms
+2026-08-11 18:20:22.222 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - 200 2148 application/json; charset=utf-8 140.8993ms
+2026-08-11 18:21:09.269 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 18:21:09.269 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 18:21:09.275 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:21:09.274 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:09.275 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:21:09.278 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:09.279 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:09.279 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:21:09.281 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:09.281 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:21:09.282 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:09.282 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:09.283 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:09.283 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:09.284 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:09.286 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:09.316 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 18:21:09.317 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 18:21:09.318 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 32.9514ms
+2026-08-11 18:21:09.319 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:21:09.319 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 18:21:09.319 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 45.9441 ms
+2026-08-11 18:21:09.321 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:09.321 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 52.8911ms
+2026-08-11 18:21:09.322 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 33.8936ms
+2026-08-11 18:21:09.324 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:21:09.325 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 47.2243 ms
+2026-08-11 18:21:09.326 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 57.6707ms
+2026-08-11 18:21:09.441 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:21:09.442 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:21:09.444 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:09.445 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:09.450 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 158.2723ms
+2026-08-11 18:21:09.452 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:09.454 +05:30 [INF] HTTP GET /api/Trades responded 200 in 173.2670 ms
+2026-08-11 18:21:09.454 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 164.7491ms
+2026-08-11 18:21:09.455 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 180.0078ms
+2026-08-11 18:21:09.456 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:09.457 +05:30 [INF] HTTP GET /api/Trades responded 200 in 178.4963 ms
+2026-08-11 18:21:09.458 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 183.7397ms
+2026-08-11 18:21:19.608 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 18:21:19.609 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:21:19.608 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 18:21:19.609 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:21:19.613 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:19.614 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:19.615 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:19.617 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:19.617 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:21:19.617 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:19.618 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:21:19.618 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:19.619 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:19.619 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:19.620 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:19.621 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:19.651 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 18:21:19.653 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:19.654 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 31.6124ms
+2026-08-11 18:21:19.654 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:21:19.655 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:21:19.655 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 18:21:19.657 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:19.657 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 44.1051 ms
+2026-08-11 18:21:19.658 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 18:21:19.659 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 51.664ms
+2026-08-11 18:21:19.660 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 34.0991ms
+2026-08-11 18:21:19.661 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 37.0479ms
+2026-08-11 18:21:19.662 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:21:19.663 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:19.663 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 48.0257 ms
+2026-08-11 18:21:19.664 +05:30 [INF] HTTP GET /api/Trades responded 200 in 49.6272 ms
+2026-08-11 18:21:19.665 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 57.1587ms
+2026-08-11 18:21:19.666 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 57.0065ms
+2026-08-11 18:21:19.778 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:21:19.780 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:19.786 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 157.1967ms
+2026-08-11 18:21:19.787 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:19.787 +05:30 [INF] HTTP GET /api/Trades responded 200 in 170.7493 ms
+2026-08-11 18:21:19.788 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 179.6797ms
+2026-08-11 18:21:43.421 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 18:21:43.424 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:21:43.426 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:43.421 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 18:21:43.426 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:21:43.429 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:43.430 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:21:43.431 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:43.432 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:43.433 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:43.433 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:43.434 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:21:43.434 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:43.435 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:43.437 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:43.438 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:43.465 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 18:21:43.467 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 18:21:43.467 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 31.5258ms
+2026-08-11 18:21:43.468 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:21:43.470 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:21:43.470 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 43.7329 ms
+2026-08-11 18:21:43.471 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:43.472 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 51.3217ms
+2026-08-11 18:21:43.474 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 34.3479ms
+2026-08-11 18:21:43.475 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:43.475 +05:30 [INF] HTTP GET /api/Trades responded 200 in 46.1461 ms
+2026-08-11 18:21:43.476 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 52.595ms
+2026-08-11 18:21:43.477 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 18:21:43.478 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:21:43.479 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:43.480 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:43.481 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 39.7351ms
+2026-08-11 18:21:43.482 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:21:43.483 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 51.8273 ms
+2026-08-11 18:21:43.486 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 64.9297ms
+2026-08-11 18:21:43.486 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 42.4965ms
+2026-08-11 18:21:43.488 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:43.489 +05:30 [INF] HTTP GET /api/Trades responded 200 in 56.2296 ms
+2026-08-11 18:21:43.489 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 62.9872ms
+2026-08-11 18:21:50.609 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/securityIds - null null
+2026-08-11 18:21:50.609 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - null null
+2026-08-11 18:21:50.609 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - null null
+2026-08-11 18:21:50.611 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:50.612 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:50.613 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:50.613 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:21:50.614 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 18:21:50.614 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 18:21:50.615 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 18:21:50.615 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 18:21:50.616 +05:30 [INF] Route matched with {action = "GetAssetClasses", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAssetClasses() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 18:21:50.647 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[SecurityId], [t].[SecurityName]
+FROM (
+    SELECT DISTINCT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[SecurityName]
+2026-08-11 18:21:50.649 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.SecuritiesDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:50.649 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[AssetClass]
+FROM (
+    SELECT DISTINCT [s].[AssetClass]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[AssetClass]
+2026-08-11 18:21:50.650 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api) in 33.3923ms
+2026-08-11 18:21:50.652 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 18:21:50.652 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:21:50.653 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api) in 34.2243ms
+2026-08-11 18:21:50.654 +05:30 [INF] HTTP GET /api/Securities/securityIds responded 200 in 43.0984 ms
+2026-08-11 18:21:50.654 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[@__asOfDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_0
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 18:21:50.655 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 18:21:50.656 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/securityIds - 200 650 application/json; charset=utf-8 47.06ms
+2026-08-11 18:21:50.658 +05:30 [INF] HTTP GET /api/Securities/assetClasses responded 200 in 44.4795 ms
+2026-08-11 18:21:50.658 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:50.660 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - 200 23 application/json; charset=utf-8 50.8968ms
+2026-08-11 18:21:50.660 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 43.1415ms
+2026-08-11 18:21:50.662 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 18:21:50.663 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 50.9798 ms
+2026-08-11 18:21:50.664 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - 200 1333 application/json; charset=utf-8 54.9061ms
+2026-08-11 18:21:53.918 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - null null
+2026-08-11 18:21:53.920 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:53.920 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 18:21:53.920 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 18:21:53.953 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 18:21:53.984 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 18:21:54.017 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 18:21:54.020 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:54.021 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 99.3985ms
+2026-08-11 18:21:54.022 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 18:21:54.023 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 103.0962 ms
+2026-08-11 18:21:54.024 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - 200 2148 application/json; charset=utf-8 106.0388ms
+2026-08-11 18:21:55.960 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 18:21:55.960 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:21:55.960 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:21:55.960 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 18:21:55.964 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:55.966 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:55.968 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:55.969 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:21:55.969 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:21:55.970 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:55.970 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:55.971 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:21:55.971 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:55.972 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:55.972 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:55.973 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:21:56.005 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 18:21:56.006 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:56.007 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 33.0919ms
+2026-08-11 18:21:56.008 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:21:56.009 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 45.3769 ms
+2026-08-11 18:21:56.010 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 50.7011ms
+2026-08-11 18:21:56.012 +05:30 [INF] Executed DbCommand (35ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:21:56.013 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:21:56.014 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:56.014 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 18:21:56.015 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:21:56.016 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 18:21:56.020 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 40.5533ms
+2026-08-11 18:21:56.021 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 44.2196ms
+2026-08-11 18:21:56.021 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 46.404ms
+2026-08-11 18:21:56.021 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:21:56.022 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:56.023 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:21:56.023 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 54.3553 ms
+2026-08-11 18:21:56.024 +05:30 [INF] HTTP GET /api/Trades responded 200 in 56.0342 ms
+2026-08-11 18:21:56.024 +05:30 [INF] HTTP GET /api/Trades responded 200 in 58.2213 ms
+2026-08-11 18:21:56.025 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 66.4106ms
+2026-08-11 18:21:56.026 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 66.797ms
+2026-08-11 18:21:56.027 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 67.2895ms
+2026-08-11 18:22:04.203 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 18:22:04.204 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:22:04.203 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:22:04.203 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 18:22:04.205 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:22:04.207 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:22:04.208 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:22:04.209 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:22:04.209 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:22:04.210 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:22:04.210 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:22:04.210 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:22:04.211 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:22:04.212 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:22:04.212 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:22:04.213 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:22:04.245 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 18:22:04.247 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:22:04.248 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 18:22:04.249 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:22:04.250 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:22:04.250 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 35.1622ms
+2026-08-11 18:22:04.250 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 18:22:04.252 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:22:04.254 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:22:04.256 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:22:04.261 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 55.4903 ms
+2026-08-11 18:22:04.261 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 44.5708ms
+2026-08-11 18:22:04.262 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 42.8635ms
+2026-08-11 18:22:04.262 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 40.0109ms
+2026-08-11 18:22:04.263 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 59.868ms
+2026-08-11 18:22:04.264 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:22:04.264 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:22:04.265 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:22:04.267 +05:30 [INF] HTTP GET /api/Trades responded 200 in 60.6676 ms
+2026-08-11 18:22:04.268 +05:30 [INF] HTTP GET /api/Trades responded 200 in 60.0202 ms
+2026-08-11 18:22:04.268 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 59.4013 ms
+2026-08-11 18:22:04.269 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 64.9098ms
+2026-08-11 18:22:04.270 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 66.9587ms
+2026-08-11 18:22:04.271 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 67.8929ms
+2026-08-11 18:27:28.031 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/securityIds - null null
+2026-08-11 18:27:28.032 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - null null
+2026-08-11 18:27:28.035 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:27:28.036 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:27:28.036 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:27:28.037 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 18:27:28.037 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 18:27:28.038 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 18:27:28.069 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[SecurityId], [t].[SecurityName]
+FROM (
+    SELECT DISTINCT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[SecurityName]
+2026-08-11 18:27:28.070 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.SecuritiesDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:27:28.071 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api) in 32.4013ms
+2026-08-11 18:27:28.072 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:27:28.073 +05:30 [INF] HTTP GET /api/Securities/securityIds responded 200 in 37.7583 ms
+2026-08-11 18:27:28.074 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 18:27:28.074 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/securityIds - 200 650 application/json; charset=utf-8 43.2444ms
+2026-08-11 18:27:28.107 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 18:27:28.140 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 18:27:28.142 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:27:28.142 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 102.5162ms
+2026-08-11 18:27:28.143 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 18:27:28.144 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 107.7128 ms
+2026-08-11 18:27:28.145 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - 200 2148 application/json; charset=utf-8 112.9292ms
+2026-08-11 18:27:32.525 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/securityIds - null null
+2026-08-11 18:27:32.525 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:27:32.529 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:27:32.526 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - null null
+2026-08-11 18:27:32.525 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/trades/traderIds - null null
+2026-08-11 18:27:32.531 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:27:32.532 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:27:32.534 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:27:32.535 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:27:32.535 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:27:32.536 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:27:32.536 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:27:32.536 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:27:32.537 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:27:32.538 +05:30 [INF] Route matched with {action = "GetTrades", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTrades(System.String, System.Nullable`1[System.Int32], System.Nullable`1[System.DateOnly], System.Nullable`1[System.DateOnly]) on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:27:32.540 +05:30 [INF] Route matched with {action = "GetTraders", controller = "Trades"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTraders() on controller TPPMSG8.Api.Controllers.TradesController (TPPMSG8.Api).
+2026-08-11 18:27:32.575 +05:30 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[SecurityID]
+FROM (
+    SELECT DISTINCT [t].[SecurityID]
+    FROM [G8].[Trades] AS [t]
+) AS [t0]
+ORDER BY [t0].[SecurityID]
+2026-08-11 18:27:32.576 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 18:27:32.577 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api) in 38.986ms
+2026-08-11 18:27:32.577 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:27:32.578 +05:30 [INF] HTTP GET /api/trades/securityIds responded 200 in 48.8533 ms
+2026-08-11 18:27:32.579 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/securityIds - 200 78 application/json; charset=utf-8 54.8578ms
+2026-08-11 18:27:32.581 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:27:32.582 +05:30 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t0].[TraderId], [t0].[TraderName]
+FROM (
+    SELECT DISTINCT [t].[TraderID] AS [TraderId], [t].[TraderName]
+    FROM [G8].[Traders] AS [t]
+) AS [t0]
+ORDER BY [t0].[TraderName]
+2026-08-11 18:27:32.583 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__fromDate_Value_0='?' (DbType = Date), @__toDate_Value_1='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] >= @__fromDate_Value_0 AND [t].[TradeDate] <= @__toDate_Value_1
+ORDER BY [t].[TradeDate] DESC, [t].[TradeID] DESC
+2026-08-11 18:27:32.583 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:27:32.584 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.TraderDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:27:32.586 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Domain.Models.Trade, TPPMSG8.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:27:32.587 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api) in 41.8378ms
+2026-08-11 18:27:32.588 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 47.2579ms
+2026-08-11 18:27:32.589 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTraders (TPPMSG8.Api)'
+2026-08-11 18:27:32.590 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:27:32.591 +05:30 [INF] HTTP GET /api/trades/traderIds responded 200 in 56.4825 ms
+2026-08-11 18:27:32.593 +05:30 [INF] HTTP GET /api/Trades responded 200 in 61.2444 ms
+2026-08-11 18:27:32.596 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/trades/traderIds - 200 212 application/json; charset=utf-8 70.8198ms
+2026-08-11 18:27:32.596 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api) in 53.477ms
+2026-08-11 18:27:32.597 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 71.9679ms
+2026-08-11 18:27:32.599 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.TradesController.GetTrades (TPPMSG8.Api)'
+2026-08-11 18:27:32.601 +05:30 [INF] HTTP GET /api/Trades responded 200 in 67.5257 ms
+2026-08-11 18:27:32.602 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Trades?securityId=&traderId=&fromDate=2026-02-02&toDate=2026-03-31 - 200 46168 application/json; charset=utf-8 75.6631ms
+2026-08-11 18:28:55.017 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/securityIds - null null
+2026-08-11 18:28:55.020 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - null null
+2026-08-11 18:28:55.024 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:28:55.025 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:28:55.025 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:28:55.025 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 18:28:55.026 +05:30 [INF] Route matched with {action = "GetSecurityIds", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSecurityIds() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 18:28:55.027 +05:30 [INF] Route matched with {action = "GetPnl", controller = "Pnl"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPnl(System.DateOnly, System.String) on controller TPPMSG8.Api.Controllers.PnlController (TPPMSG8.Api).
+2026-08-11 18:28:55.058 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[SecurityId], [t].[SecurityName]
+FROM (
+    SELECT DISTINCT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[SecurityName]
+2026-08-11 18:28:55.059 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.SecuritiesDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:28:55.060 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api) in 32.3479ms
+2026-08-11 18:28:55.062 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetSecurityIds (TPPMSG8.Api)'
+2026-08-11 18:28:55.062 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__valuationDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+FROM [G8].[Trades] AS [t]
+WHERE [t].[TradeDate] <= @__valuationDate_0
+2026-08-11 18:28:55.063 +05:30 [INF] HTTP GET /api/Securities/securityIds responded 200 in 39.6609 ms
+2026-08-11 18:28:55.066 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/securityIds - 200 650 application/json; charset=utf-8 48.5489ms
+2026-08-11 18:28:55.095 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID] AS [SecurityId], [s].[SecurityName]
+FROM [G8].[Securities] AS [s]
+2026-08-11 18:28:55.127 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[p0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT SecurityId, PriceDate, ClosePrice FROM G8.fn_GetLatestEodPrices(@p0)
+2026-08-11 18:28:55.130 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PnlDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:28:55.131 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api) in 101.8508ms
+2026-08-11 18:28:55.132 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PnlController.GetPnl (TPPMSG8.Api)'
+2026-08-11 18:28:55.132 +05:30 [INF] HTTP GET /api/Pnl responded 200 in 107.7342 ms
+2026-08-11 18:28:55.133 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Pnl?valuationDate=2026-03-31&securityId= - 200 2148 application/json; charset=utf-8 113.2225ms
+2026-08-11 18:30:53.704 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - null null
+2026-08-11 18:30:53.704 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - null null
+2026-08-11 18:30:53.707 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:30:53.708 +05:30 [INF] CORS policy execution successful.
+2026-08-11 18:30:53.709 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 18:30:53.709 +05:30 [INF] Executing endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 18:30:53.710 +05:30 [INF] Route matched with {action = "GetAssetClasses", controller = "Securities"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAssetClasses() on controller TPPMSG8.Api.Controllers.SecuritiesController (TPPMSG8.Api).
+2026-08-11 18:30:53.710 +05:30 [INF] Route matched with {action = "GetPositions", controller = "PositionsTable"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPositions(System.Nullable`1[System.DateOnly], System.String, System.String) on controller TPPMSG8.Api.Controllers.PositionsTableController (TPPMSG8.Api).
+2026-08-11 18:30:53.743 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[AssetClass]
+FROM (
+    SELECT DISTINCT [s].[AssetClass]
+    FROM [G8].[Securities] AS [s]
+) AS [t]
+ORDER BY [t].[AssetClass]
+2026-08-11 18:30:53.744 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-11 18:30:53.746 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api) in 34.6248ms
+2026-08-11 18:30:53.750 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.SecuritiesController.GetAssetClasses (TPPMSG8.Api)'
+2026-08-11 18:30:53.751 +05:30 [INF] HTTP GET /api/Securities/assetClasses responded 200 in 43.9934 ms
+2026-08-11 18:30:53.753 +05:30 [INF] Executed DbCommand (35ms) [Parameters=[@__asOfDate_0='?' (DbType = Date)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SecurityID], [s].[SecurityName], [s].[AssetClass], [t0].[TradeID], [t0].[BuySell], [t0].[Price], [t0].[Quantity], [t0].[SecurityID], [t0].[TradeDate], [t0].[TraderID]
+FROM [G8].[Securities] AS [s]
+LEFT JOIN (
+    SELECT [t].[TradeID], [t].[BuySell], [t].[Price], [t].[Quantity], [t].[SecurityID], [t].[TradeDate], [t].[TraderID]
+    FROM [G8].[Trades] AS [t]
+    WHERE [t].[TradeDate] <= @__asOfDate_0
+) AS [t0] ON [s].[SecurityID] = [t0].[SecurityID]
+ORDER BY [s].[SecurityID], [t0].[TradeID]
+2026-08-11 18:30:53.753 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/Securities/assetClasses - 200 23 application/json; charset=utf-8 49.6343ms
+2026-08-11 18:30:53.756 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TPPMSG8.Application.DTOs.PositionsTableDto, TPPMSG8.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-11 18:30:53.758 +05:30 [INF] Executed action TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api) in 43.6858ms
+2026-08-11 18:30:53.758 +05:30 [INF] Executed endpoint 'TPPMSG8.Api.Controllers.PositionsTableController.GetPositions (TPPMSG8.Api)'
+2026-08-11 18:30:53.759 +05:30 [INF] HTTP GET /api/PositionsTable/positions responded 200 in 50.4567 ms
+2026-08-11 18:30:53.760 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7021/api/PositionsTable/positions?AsOfDate=2026-03-31&securityId=&assetClass= - 200 1333 application/json; charset=utf-8 56.0635ms

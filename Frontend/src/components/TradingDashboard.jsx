@@ -1,36 +1,16 @@
 import React, { useState, useEffect, Suspense } from 'react';
-import TradeBlotter from './TradeBlotter';
+import { Link, Outlet, useLocation } from 'react-router-dom'; // Import router hooks
 import './Dashboard.css';
 
-// Lazy load heavy chart components
-const Positions = React.lazy(() => import('./Positions'));
-const PnL = React.lazy(() => import('./PnL'));
-
 const TradingDashboard = () => {
-    const [activeTab, setActiveTab] = useState('blotter');
-    
-    const [theme, setTheme] = useState(() => {
-        return localStorage.getItem('theme') || 'light';
-    });
+    const location = useLocation(); // Used to highlight the active tab
+    const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
 
     useEffect(() => {
         localStorage.setItem('theme', theme);
     }, [theme]);
 
-    const toggleTheme = () => {
-        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-    };
-
-    const renderContent = () => {
-        // Suspense provides a fallback UI while the heavy components download
-        return (
-            <Suspense fallback={<div className="text-center" style={{padding: '40px'}}>Loading module...</div>}>
-                {activeTab === 'blotter' && <TradeBlotter theme={theme} />}
-                {activeTab === 'positions' && <Positions theme={theme} />}
-                {activeTab === 'pnl' && <PnL theme={theme} />}
-            </Suspense>
-        );
-    };
+    const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
 
     return (
         <div className="dashboard-layout" data-theme={theme}>
@@ -44,24 +24,25 @@ const TradingDashboard = () => {
                 
                 <div className="header-right">
                     <nav className="top-nav">
-                        <button 
-                            className={activeTab === 'blotter' ? 'active' : ''} 
-                            onClick={() => setActiveTab('blotter')}
+                        {/* Replace state buttons with React Router Links */}
+                        <Link 
+                            to="/trades-blotter" 
+                            className={location.pathname === '/trades-blotter' ? 'active' : ''}
                         >
                             Trade Blotter
-                        </button>
-                        <button 
-                            className={activeTab === 'positions' ? 'active' : ''} 
-                            onClick={() => setActiveTab('positions')}
+                        </Link>
+                        <Link 
+                            to="/positions" 
+                            className={location.pathname === '/positions' ? 'active' : ''}
                         >
                             Positions
-                        </button>
-                        <button 
-                            className={activeTab === 'pnl' ? 'active' : ''} 
-                            onClick={() => setActiveTab('pnl')}
+                        </Link>
+                        <Link 
+                            to="/pnl" 
+                            className={location.pathname === '/pnl' ? 'active' : ''}
                         >
                             PnL & Risk
-                        </button>
+                        </Link>
                     </nav>
                     
                     <div className="header-divider"></div>
@@ -74,7 +55,11 @@ const TradingDashboard = () => {
             
             <main className="main-content">
                 <div className="content-area">
-                    {renderContent()}
+                    {/* Suspense handles the lazy-loaded route components */}
+                    <Suspense fallback={<div className="text-center" style={{padding: '40px'}}>Loading module...</div>}>
+                        {/* Outlet renders whatever component matches the current URL */}
+                        <Outlet context={{ theme }} /> 
+                    </Suspense>
                 </div>
             </main>
         </div>
