@@ -54,6 +54,26 @@ const Positions = ({ theme }) => {
         enabled: !isInvalidDate,
     });
 
+    // React Query: Python Risk Engine (VaR)
+    const { data: riskData, isLoading: isRiskLoading } = useQuery({
+        queryKey: ['riskVaR', positionsData],
+        queryFn: async () => {
+            if (!positionsData || positionsData.length === 0) return null;
+            
+            // Send the positions to our Python FastAPI server
+            const response = await axios.post('http://localhost:8000/api/risk/var', {
+                asOfDate: asOfDate,
+                positions: positionsData.map(p => ({
+                    securityId: p.securityId,
+                    netQuantity: p.netQuantity,
+                    averageCost: p.averageCost
+                }))
+            });
+            return response.data;
+        },
+        enabled: positionsData.length > 0, // Only run if we actually have positions
+    });
+
     // Pagination Logic
     const totalPages = Math.ceil(positionsData.length / pageSize) || 1;
     const paginatedPositions = useMemo(() => {
@@ -128,6 +148,28 @@ const Positions = ({ theme }) => {
             </div>
 
             {displayError && <div className="alert-error" style={{marginBottom: '24px'}}>{displayError}</div>}
+
+            {/* PYTHON RISK ENGINE METRICS */}
+            {riskData && !isRiskLoading && (
+                <div className="kpi-container" style={{ marginBottom: '24px' }}>
+                    <div className="kpi-pill" style={{ borderLeft: '4px solid #3b82f6' }}>
+                        <span className="kpi-label">Portfolio Value</span>
+                        <span className="kpi-value">{formatCurrency(riskData.totalPortfolioValue)}</span>
+                    </div>
+                    <div className="kpi-pill" style={{ borderLeft: '4px solid #f59e0b' }}>
+                        <span className="kpi-label" title="95% confidence max daily loss">1-Day VaR (95%)</span>
+                        <span className="kpi-value" style={{ color: 'var(--danger-text)' }}>
+                            {formatCurrency(riskData.var95)}
+                        </span>
+                    </div>
+                    <div className="kpi-pill" style={{ borderLeft: '4px solid #ef4444' }}>
+                        <span className="kpi-label" title="99% confidence worst-case daily loss">1-Day VaR (99%)</span>
+                        <span className="kpi-value" style={{ color: 'var(--danger-text)' }}>
+                            {formatCurrency(riskData.var99)}
+                        </span>
+                    </div>
+                </div>
+            )}
 
             <div className="panel">
                 {isLoading ? (
