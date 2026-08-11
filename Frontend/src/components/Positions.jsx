@@ -60,7 +60,6 @@ const Positions = ({ theme }) => {
         queryFn: async () => {
             if (!positionsData || positionsData.length === 0) return null;
             
-            // Send the positions to our Python FastAPI server
             const response = await axios.post('http://localhost:8000/api/risk/var', {
                 asOfDate: asOfDate,
                 positions: positionsData.map(p => ({
@@ -71,7 +70,7 @@ const Positions = ({ theme }) => {
             });
             return response.data;
         },
-        enabled: positionsData.length > 0, // Only run if we actually have positions
+        enabled: positionsData.length > 0,
     });
 
     // Pagination Logic
@@ -93,19 +92,44 @@ const Positions = ({ theme }) => {
         return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(num);
     };
 
-    const chartData = useMemo(() => ({
-        labels: positionsData.map(item => item.securityId),
-        datasets: [
-            { label: 'Average Cost (₹)', data: positionsData.map(item => item.averageCost), backgroundColor: theme === 'dark' ? '#ffffff' : '#111111', borderRadius: 4 },
-        ],
-    }), [positionsData, theme]);
+    // Helper: Asset Class Badges Color Coding
+    const renderAssetBadge = (type) => {
+        const normalized = (type || '').toLowerCase();
+        if (normalized.includes('equity')) return <span className="asset-tag tag-equity">Equity</span>;
+        if (normalized.includes('bond')) return <span className="asset-tag tag-bond">Bond</span>;
+        if (normalized.includes('etf')) return <span className="asset-tag tag-etf">ETF</span>;
+        return <span className="asset-tag">{type}</span>;
+    };
+
+    // Chart Data with Asset-based Colors
+    const chartData = useMemo(() => {
+        const getColorByAsset = (ac) => {
+            const norm = (ac || '').toLowerCase();
+            if (norm.includes('equity')) return '#3b82f6';
+            if (norm.includes('bond')) return '#f59e0b';
+            if (norm.includes('etf')) return '#8b5cf6';
+            return '#64748b';
+        };
+
+        return {
+            labels: positionsData.map(item => item.securityId),
+            datasets: [
+                { 
+                    label: 'Average Cost (₹)', 
+                    data: positionsData.map(item => item.averageCost), 
+                    backgroundColor: positionsData.map(item => getColorByAsset(item.assetClass)),
+                    borderRadius: 6 
+                },
+            ],
+        };
+    }, [positionsData]);
 
     const chartOptions = useMemo(() => ({
         responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { position: 'top', labels: { color: theme === 'dark' ? '#888888' : '#666666' } } },
+        plugins: { legend: { position: 'top', labels: { color: theme === 'dark' ? '#94a3b8' : '#64748b' } } },
         scales: {
-            x: { grid: { display: false }, ticks: { color: theme === 'dark' ? '#888888' : '#666666' } },
-            y: { grid: { color: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }, ticks: { color: theme === 'dark' ? '#888888' : '#666666' } }
+            x: { grid: { display: false }, ticks: { color: theme === 'dark' ? '#94a3b8' : '#64748b' } },
+            y: { grid: { color: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }, ticks: { color: theme === 'dark' ? '#94a3b8' : '#64748b' } }
         }
     }), [theme]);
 
@@ -113,6 +137,7 @@ const Positions = ({ theme }) => {
 
     return (
         <div className="positions-container">
+            {/* Filter Toolbar */}
             <div className="panel" style={{ marginBottom: '24px' }}>
                 <div className="toolbar">
                     <div className="filter-group">
@@ -149,28 +174,29 @@ const Positions = ({ theme }) => {
 
             {displayError && <div className="alert-error" style={{marginBottom: '24px'}}>{displayError}</div>}
 
-            {/* PYTHON RISK ENGINE METRICS */}
+            {/* PYTHON RISK ENGINE KPI CARDS */}
             {riskData && !isRiskLoading && (
                 <div className="kpi-container" style={{ marginBottom: '24px' }}>
-                    <div className="kpi-pill" style={{ borderLeft: '4px solid #3b82f6' }}>
+                    <div className="kpi-pill kpi-border-blue">
                         <span className="kpi-label">Portfolio Value</span>
-                        <span className="kpi-value">{formatCurrency(riskData.totalPortfolioValue)}</span>
+                        <span className="kpi-value text-blue">{formatCurrency(riskData.totalPortfolioValue)}</span>
                     </div>
-                    <div className="kpi-pill" style={{ borderLeft: '4px solid #f59e0b' }}>
+                    <div className="kpi-pill kpi-border-amber">
                         <span className="kpi-label" title="95% confidence max daily loss">1-Day VaR (95%)</span>
-                        <span className="kpi-value" style={{ color: 'var(--danger-text)' }}>
+                        <span className="kpi-value text-amber">
                             {formatCurrency(riskData.var95)}
                         </span>
                     </div>
-                    <div className="kpi-pill" style={{ borderLeft: '4px solid #ef4444' }}>
+                    <div className="kpi-pill kpi-border-red">
                         <span className="kpi-label" title="99% confidence worst-case daily loss">1-Day VaR (99%)</span>
-                        <span className="kpi-value" style={{ color: 'var(--danger-text)' }}>
+                        <span className="kpi-value text-red">
                             {formatCurrency(riskData.var99)}
                         </span>
                     </div>
                 </div>
             )}
 
+            {/* Table or Graph Content */}
             <div className="panel">
                 {isLoading ? (
                     <div className="text-center" style={{padding: '40px'}}>Fetching positions data...</div>
@@ -193,22 +219,24 @@ const Positions = ({ theme }) => {
                                     <tr key={index}>
                                         <td className="font-bold">{item.securityId}</td>
                                         <td>{item.securityName}</td>
-                                        <td><span className="badge" style={{ backgroundColor: 'transparent', color: 'var(--text-main)' }}>{item.assetClass}</span></td>
-                                        <td className="text-right font-bold" style={{ color: item.netQuantity < 0 ? 'var(--danger-text)' : 'inherit' }}>
+                                        <td>{renderAssetBadge(item.assetClass)}</td>
+                                        <td className="text-right font-bold" style={{ color: item.netQuantity < 0 ? '#ef4444' : 'inherit' }}>
                                             {item.netQuantity.toLocaleString()}
                                         </td>
-                                        <td className="text-right">{formatCurrency(item.averageCost)}</td>
+                                        <td className="text-right font-bold">{formatCurrency(item.averageCost)}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
 
                         {/* Pagination Controls */}
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderTop: '1px solid var(--grid-color)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderTop: '1px solid var(--border)' }}>
                             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                                 <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Rows per page:</span>
                                 <select className="enterprise-select" style={{ width: '70px', padding: '4px' }} value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
-                                    <option value={10}>10</option><option value={25}>25</option><option value={50}>50</option>
+                                    <option value={10}>10</option>
+                                    <option value={25}>25</option>
+                                    <option value={50}>50</option>
                                 </select>
                             </div>
                             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>

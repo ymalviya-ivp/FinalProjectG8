@@ -1,83 +1,47 @@
-import React, { useState, useEffect, Suspense } from 'react';
-import TradeBlotter from './TradeBlotter';
+// components/TradingDashboard.jsx
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 
-// Lazy load heavy chart components
-const Positions = React.lazy(() => import('./Positions'));
-const PnL = React.lazy(() => import('./PnL'));
-
-const TradingDashboard = () => {
-    const [activeTab, setActiveTab] = useState('blotter');
-    
-    const [theme, setTheme] = useState(() => {
-        return localStorage.getItem('theme') || 'light';
-    });
-
-    useEffect(() => {
-        localStorage.setItem('theme', theme);
-    }, [theme]);
-
-    const toggleTheme = () => {
-        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-    };
-
-    const renderContent = () => {
-        // Suspense provides a fallback UI while the heavy components download
-        return (
-            <Suspense fallback={<div className="text-center" style={{padding: '40px'}}>Loading module...</div>}>
-                {activeTab === 'blotter' && <TradeBlotter theme={theme} />}
-                {activeTab === 'positions' && <Positions theme={theme} />}
-                {activeTab === 'pnl' && <PnL theme={theme} />}
-            </Suspense>
-        );
-    };
-
+const TradingDashboard = ({ theme, toggleTheme }) => {
     return (
-        <div className="dashboard-layout" data-theme={theme}>
-            <header className="top-header">
-                <div className="header-left">
-                    <div className="logo-container">
-                        <span className="logo-main">Vantage</span>
-                        <span className="logo-sub">Capital Markets</span>
-                    </div>
+        <header className="top-header">
+            <div className="header-left">
+                <div className="logo-container">
+                    <span className="logo-main">Vantage</span>
+                    <span className="logo-sub">Capital Markets</span>
                 </div>
-                
-                <div className="header-right">
-                    <nav className="top-nav">
-                        <button 
-                            className={activeTab === 'blotter' ? 'active' : ''} 
-                            onClick={() => setActiveTab('blotter')}
-                        >
-                            Trade Blotter
-                        </button>
-                        <button 
-                            className={activeTab === 'positions' ? 'active' : ''} 
-                            onClick={() => setActiveTab('positions')}
-                        >
-                            Positions
-                        </button>
-                        <button 
-                            className={activeTab === 'pnl' ? 'active' : ''} 
-                            onClick={() => setActiveTab('pnl')}
-                        >
-                            PnL & Risk
-                        </button>
-                    </nav>
-                    
-                    <div className="header-divider"></div>
-                    
-                    <button onClick={toggleTheme} className="theme-toggle-btn" title="Toggle Theme">
-                        {theme === 'light' ? '☾' : '☀'}
-                    </button>
-                </div>
-            </header>
+            </div>
             
-            <main className="main-content">
-                <div className="content-area">
-                    {renderContent()}
-                </div>
-            </main>
-        </div>
+            <div className="header-right">
+                <nav className="top-nav">
+                    <NavLink 
+                        to="/blotter" 
+                        className={({ isActive }) => isActive ? 'active' : ''}
+                    >
+                        Trade Blotter
+                    </NavLink>
+                    <NavLink 
+                        to="/positions" 
+                        className={({ isActive }) => isActive ? 'active' : ''}
+                    >
+                        Positions
+                    </NavLink>
+                    <NavLink 
+                        to="/pnl" 
+                        className={({ isActive }) => isActive ? 'active' : ''}
+                    >
+                        PnL & Risk
+                    </NavLink>
+                </nav>
+                
+                <div className="header-divider"></div>
+                
+                <button onClick={toggleTheme} className="theme-toggle-btn" title="Toggle Theme">
+                    {theme === 'light' ? '☾' : '☀'}
+                </button>
+            </div>
+        </header>
     );
 };
 

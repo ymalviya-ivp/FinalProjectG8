@@ -69,20 +69,45 @@ const PnL = ({ theme }) => {
         setCurrentPage(1);
     };
 
+    // Helper: Dynamic Color Formatting for Financial Numbers
     const formatCurrency = (value) => {
         const num = Number(value) || 0;
         const formatted = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(Math.abs(num));
-        const colorVar = num >= 0 ? 'var(--text-main)' : 'var(--danger-text)';
-        return <span style={{ color: colorVar, fontWeight: '600' }}>{num < 0 ? `-${formatted}` : formatted}</span>;
+        const colorClass = num > 0 ? 'text-positive' : num < 0 ? 'text-negative' : 'text-neutral';
+
+        return (
+            <span className={`pnl-val ${colorClass}`}>
+                {num < 0 ? `-${formatted}` : formatted}
+            </span>
+        );
+    };
+
+    // Helper: Asset Class Badges
+    const renderAssetBadge = (id) => {
+        if (!id) return null;
+        if (id.startsWith('EQ')) return <span className="asset-tag tag-equity">Equity</span>;
+        if (id.startsWith('BD')) return <span className="asset-tag tag-bond">Bond</span>;
+        if (id.startsWith('ET')) return <span className="asset-tag tag-etf">ETF</span>;
+        return null;
     };
 
     const chartData = useMemo(() => ({
         labels: pnlData.map(item => item.securityTicker || item.securityId),
         datasets: [
-            { label: 'Realized PnL', data: pnlData.map(item => item.realizedPnl), backgroundColor: theme === 'dark' ? '#ffffff' : '#111111', borderRadius: 4 },
-            { label: 'Unrealized PnL', data: pnlData.map(item => item.unrealizedPnl), backgroundColor: theme === 'dark' ? '#555555' : '#888888', borderRadius: 4 },
+            { 
+                label: 'Realized PnL', 
+                data: pnlData.map(item => item.realizedPnl), 
+                backgroundColor: '#10b981', 
+                borderRadius: 6 
+            },
+            { 
+                label: 'Unrealized PnL', 
+                data: pnlData.map(item => item.unrealizedPnl), 
+                backgroundColor: '#3b82f6', 
+                borderRadius: 6 
+            },
         ],
-    }), [pnlData, theme]);
+    }), [pnlData]);
 
     const chartOptions = useMemo(() => ({
         responsive: true, maintainAspectRatio: false,
@@ -97,6 +122,7 @@ const PnL = ({ theme }) => {
 
     return (
         <div className="pnl-container">
+            {/* Filter Toolbar */}
             <div className="panel" style={{ marginBottom: '24px' }}>
                 <div className="toolbar">
                     <div className="filter-group">
@@ -125,23 +151,25 @@ const PnL = ({ theme }) => {
 
             {displayError && <div className="alert-error" style={{marginBottom: '24px'}}>{displayError}</div>}
 
+            {/* KPI Summary Cards */}
             {pnlData.length > 0 && !isLoading && (
                 <div className="kpi-container">
-                    <div className="kpi-pill">
+                    <div className={`kpi-pill ${totalRealized >= 0 ? 'kpi-border-positive' : 'kpi-border-negative'}`}>
                         <span className="kpi-label">Realized PnL</span>
                         <span className="kpi-value">{formatCurrency(totalRealized)}</span>
                     </div>
-                    <div className="kpi-pill">
+                    <div className={`kpi-pill ${totalUnrealized >= 0 ? 'kpi-border-positive' : 'kpi-border-negative'}`}>
                         <span className="kpi-label">Unrealized PnL</span>
                         <span className="kpi-value">{formatCurrency(totalUnrealized)}</span>
                     </div>
-                    <div className="kpi-pill">
+                    <div className={`kpi-pill ${netTotalPnL >= 0 ? 'kpi-border-positive' : 'kpi-border-negative'}`}>
                         <span className="kpi-label">Net PnL</span>
                         <span className="kpi-value">{formatCurrency(netTotalPnL)}</span>
                     </div>
                 </div>
             )}
 
+            {/* Table View */}
             <div className="panel">
                 {isLoading ? (
                     <div className="text-center" style={{padding: '40px'}}>Fetching PnL data...</div>
@@ -154,6 +182,7 @@ const PnL = ({ theme }) => {
                                 <tr>
                                     <th>Security ID</th>
                                     <th>Security Ticker</th>
+                                    <th>Asset Type</th>
                                     <th className="text-right">Realized PnL</th>
                                     <th className="text-right">Unrealized PnL</th>
                                     <th className="text-right">Total PnL</th>
@@ -161,9 +190,10 @@ const PnL = ({ theme }) => {
                             </thead>
                             <tbody>
                                 {paginatedPnl.map((item, index) => (
-                                    <tr key={index}>
+                                    <tr key={index} className={item.totalPnl >= 0 ? 'row-profit' : 'row-loss'}>
                                         <td className="font-bold">{item.securityId}</td>
                                         <td>{item.securityTicker}</td>
+                                        <td>{renderAssetBadge(item.securityId)}</td>
                                         <td className="text-right">{formatCurrency(item.realizedPnl)}</td>
                                         <td className="text-right">{formatCurrency(item.unrealizedPnl)}</td>
                                         <td className="text-right font-bold">{formatCurrency(item.totalPnl)}</td>
@@ -173,11 +203,13 @@ const PnL = ({ theme }) => {
                         </table>
 
                         {/* Pagination Controls */}
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderTop: '1px solid var(--grid-color)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderTop: '1px solid var(--border)' }}>
                             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                                 <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Rows per page:</span>
                                 <select className="enterprise-select" style={{ width: '70px', padding: '4px' }} value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
-                                    <option value={10}>10</option><option value={25}>25</option><option value={50}>50</option>
+                                    <option value={10}>10</option>
+                                    <option value={25}>25</option>
+                                    <option value={50}>50</option>
                                 </select>
                             </div>
                             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
@@ -190,7 +222,6 @@ const PnL = ({ theme }) => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 ) : pnlData.length > 0 ? (
                     <div style={{ height: '400px', position: 'relative', width: '100%' }}>
