@@ -81,7 +81,7 @@ namespace TPPMSG8.Infrastructure.Repositories {
               TraderName = t.TraderName
             })
             .Distinct()
-            .OrderBy(t => t.TraderName)
+            .OrderBy(t => t.TraderId)
             .ToListAsync();
       } catch (Exception ex) {
         _logger.LogError(ex, "An error occurred while fetching distinct traders.");
