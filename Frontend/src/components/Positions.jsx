@@ -7,7 +7,8 @@ import { Bar } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const MIN_DATE = '2026-02-02';
-const MAX_DATE = '2026-03-31';
+const today = new Date();
+const MAX_DATE = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
 const Positions = ({ theme }) => {
     const [viewMode, setViewMode] = useState('table');
