@@ -24,27 +24,35 @@ const PnL = ({ theme }) => {
 
     const { data: securityOptions = [] } = useQuery({
         queryKey: ['securities'],
-        queryFn: async () => (await axios.get('https://localhost:7021/api/Securities/securityIds')).data,
+        queryFn: async () => (await axios.get(`${import.meta.env.VITE_DOTNET_API_URL}/Securities/securityIds`)).data,
         staleTime: Infinity, 
     });
 
+    // 1. HARD ERRORS (Blocks API call)
     const isInvalidDate = useMemo(() => {
         if (!valuationDate) return 'Please select a valuation date.';
         if (valuationDate < MIN_DATE || valuationDate > MAX_DATE) return `Data is only available between ${MIN_DATE} and ${MAX_DATE}.`;
-        
+        return null;
+    }, [valuationDate]);
+
+    // 2. WARNINGS (Does NOT block API call, just shows a message)
+    const weekendWarning = useMemo(() => {
+        if (!valuationDate) return null;
         const [year, month, day] = valuationDate.split('-');
         const dateObj = new Date(year, month - 1, day);
-        if (dateObj.getDay() === 0 || dateObj.getDay() === 6) return "It's a weekend so markets are closed. Please select a weekday.";
+        if (dateObj.getDay() === 0 || dateObj.getDay() === 6) {
+            return "Note: It's a weekend, so market prices reflect the last available EOD price (Friday).";
+        }
         return null;
     }, [valuationDate]);
 
     const { data: pnlData = [], isLoading, error: apiError } = useQuery({
         queryKey: ['pnl', valuationDate, securityId],
         queryFn: async () => {
-            const url = `https://localhost:7021/api/Pnl?valuationDate=${valuationDate}&securityId=${securityId}`;
+            const url = `${import.meta.env.VITE_DOTNET_API_URL}/Pnl?valuationDate=${valuationDate}&securityId=${securityId}`;
             return (await axios.get(url)).data;
         },
-        enabled: !isInvalidDate, 
+        enabled: !isInvalidDate,
     });
 
     // Pagination Logic
@@ -149,7 +157,23 @@ const PnL = ({ theme }) => {
                 </div>
             </div>
 
+            {/* HARD ERRORS */}
             {displayError && <div className="alert-error" style={{marginBottom: '24px'}}>{displayError}</div>}
+
+            {/* WEEKEND WARNING BANNER */}
+            {weekendWarning && !displayError && (
+                <div className="alert-warning" style={{
+                    marginBottom: '24px', 
+                    padding: '12px 16px', 
+                    backgroundColor: theme === 'dark' ? 'rgba(245, 158, 11, 0.1)' : '#fef3c7', 
+                    color: theme === 'dark' ? '#fbbf24' : '#92400e', 
+                    borderLeft: '4px solid #f59e0b',
+                    borderRadius: '4px',
+                    fontSize: '14px'
+                }}>
+                    {weekendWarning}
+                </div>
+            )}
 
             {/* KPI Summary Cards */}
             {pnlData.length > 0 && !isLoading && (

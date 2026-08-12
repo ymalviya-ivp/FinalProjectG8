@@ -23,13 +23,13 @@ const TradeBlotter = () => {
     // React Query: Dropdowns
     const { data: securityOptions = [] } = useQuery({
         queryKey: ['blotterSecurityIds'],
-        queryFn: async () => (await axios.get('https://localhost:7021/api/trades/securityIds')).data,
+        queryFn: async () => (await axios.get(`${import.meta.env.VITE_DOTNET_API_URL}/trades/securityIds`)).data,
         staleTime: Infinity,
     });
 
     const { data: traderOptions = [] } = useQuery({
         queryKey: ['traderIds'],
-        queryFn: async () => (await axios.get('https://localhost:7021/api/trades/traderIds')).data,
+        queryFn: async () => (await axios.get(`${import.meta.env.VITE_DOTNET_API_URL}/trades/traderIds`)).data,
         staleTime: Infinity,
     });
 
@@ -45,7 +45,7 @@ const TradeBlotter = () => {
     const { data: trades = [], isLoading, error: apiError } = useQuery({
         queryKey: ['trades', securityId, traderId, fromDate, toDate],
         queryFn: async ({ signal }) => {
-            const url = `https://localhost:7021/api/Trades?securityId=${securityId}&traderId=${traderId}&fromDate=${fromDate}&toDate=${toDate}`;
+            const url = `${import.meta.env.VITE_DOTNET_API_URL}/Trades?securityId=${securityId}&traderId=${traderId}&fromDate=${fromDate}&toDate=${toDate}`;
             return (await axios.get(url, { signal })).data; 
         },
         enabled: !isInvalidDateRange,

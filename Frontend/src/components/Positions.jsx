@@ -25,30 +25,38 @@ const Positions = ({ theme }) => {
 
     const { data: securityOptions = [] } = useQuery({
         queryKey: ['securities'],
-        queryFn: async () => (await axios.get('https://localhost:7021/api/Securities/securityIds')).data,
+        queryFn: async () => (await axios.get(`${import.meta.env.VITE_DOTNET_API_URL}/Securities/securityIds`)).data,
         staleTime: Infinity,
     });
 
     const { data: assetClassOptions = [] } = useQuery({
         queryKey: ['assetClasses'],
-        queryFn: async () => (await axios.get('https://localhost:7021/api/Securities/assetClasses')).data,
+        queryFn: async () => (await axios.get(`${import.meta.env.VITE_DOTNET_API_URL}/Securities/assetClasses`)).data,
         staleTime: Infinity,
     });
 
+    // 1. HARD ERRORS (Blocks API call)
     const isInvalidDate = useMemo(() => {
         if (!asOfDate) return 'Please select an As Of Date.';
         if (asOfDate < MIN_DATE || asOfDate > MAX_DATE) return `Data is only available between ${MIN_DATE} and ${MAX_DATE}.`;
-        
+        return null;
+    }, [asOfDate]);
+
+    // 2. WARNINGS (Does NOT block API call, just shows a message)
+    const weekendWarning = useMemo(() => {
+        if (!asOfDate) return null;
         const [year, month, day] = asOfDate.split('-');
         const dateObj = new Date(year, month - 1, day);
-        if (dateObj.getDay() === 0 || dateObj.getDay() === 6) return "It's a weekend so markets are closed. Please select a weekday.";
+        if (dateObj.getDay() === 0 || dateObj.getDay() === 6) {
+            return "Note: It's a weekend, so market prices reflect the last available EOD price (Friday).";
+        }
         return null;
     }, [asOfDate]);
 
     const { data: positionsData = [], isLoading, error: apiError } = useQuery({
         queryKey: ['positions', asOfDate, securityId, assetClass],
         queryFn: async () => {
-            const url = `https://localhost:7021/api/PositionsTable/positions?AsOfDate=${asOfDate}&securityId=${securityId}&assetClass=${assetClass}`;
+            const url = `${import.meta.env.VITE_DOTNET_API_URL}/PositionsTable/positions?AsOfDate=${asOfDate}&securityId=${securityId}&assetClass=${assetClass}`;
             return (await axios.get(url)).data;
         },
         enabled: !isInvalidDate,
@@ -60,7 +68,7 @@ const Positions = ({ theme }) => {
         queryFn: async () => {
             if (!positionsData || positionsData.length === 0) return null;
             
-            const response = await axios.post('http://localhost:8000/api/risk/var', {
+            const response = await axios.post(`${import.meta.env.VITE_PYTHON_RISK_API_URL}/risk/var`, {
                 asOfDate: asOfDate,
                 positions: positionsData.map(p => ({
                     securityId: p.securityId,
@@ -172,10 +180,26 @@ const Positions = ({ theme }) => {
                 </div>
             </div>
 
+            {/* HARD ERRORS */}
             {displayError && <div className="alert-error" style={{marginBottom: '24px'}}>{displayError}</div>}
 
+            {/* WEEKEND WARNING BANNER */}
+            {weekendWarning && !displayError && (
+                <div className="alert-warning" style={{
+                    marginBottom: '24px', 
+                    padding: '12px 16px', 
+                    backgroundColor: theme === 'dark' ? 'rgba(245, 158, 11, 0.1)' : '#fef3c7', 
+                    color: theme === 'dark' ? '#fbbf24' : '#92400e', 
+                    borderLeft: '4px solid #f59e0b',
+                    borderRadius: '4px',
+                    fontSize: '14px'
+                }}>
+                    {weekendWarning}
+                </div>
+            )}
+
             {/* PYTHON RISK ENGINE KPI CARDS */}
-            {riskData && !isRiskLoading && (
+            {riskData && !isRiskLoading && !displayError && (
                 <div className="kpi-container" style={{ marginBottom: '24px' }}>
                     <div className="kpi-pill kpi-border-blue">
                         <span className="kpi-label">Portfolio Value</span>
