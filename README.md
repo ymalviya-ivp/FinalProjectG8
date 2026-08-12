@@ -15,8 +15,6 @@ Vantage is an institutional-grade Portfolio, Position, and Risk Management appli
   - [Running the Application](#running-the-application)
 - [Project Structure](#project-structure)
 - [Configuration Reference](#configuration-reference)
-- [Troubleshooting](#troubleshooting)
-- [License](#license)
 
 ---
 
@@ -189,6 +187,6 @@ FinalProjectG8/
 | Service | Setting | Purpose |
 |---|---|---|
 | Main API | `ConnectionStrings:DefaultConnection` | SQL Server connection string, set via `dotnet user-secrets` (not committed to source) |
-| Risk Engine | `DATABASE_URL` | SQLAlchemy connection string to SQL Server, set in `SkillEngine/.env` |
+| Risk Engine | `DDB_SERVER= DB_NAME= DB_USER= DB_PASSWORD=` | SQLAlchemy generates connection string to connect to SQL Server using these details, set in `SkillEngine/.env` |
 | Frontend | `VITE_API_BASE_URL` | Base URL of the Main API |
 | Frontend | `VITE_RISK_ENGINE_URL` | Base URL of the Quant Risk Engine |
