@@ -70,6 +70,12 @@ namespace TPPMSG8.Application.Services {
             } else {
               realizedPnl += (trade.Price - avgCost) * trade.Quantity;
               netPosition -= trade.Quantity;
+              if (netPosition < 0) {
+                throw new InvalidOperationException($"Invalid trade sequence: Net position for SecurityId '{trade.SecurityId}' dropped below zero on TradeId {trade.TradeId}. Short positions are not allowed.");
+              }
+              if (netPosition == 0) {
+                avgCost = 0;
+              }
             }
           }
 

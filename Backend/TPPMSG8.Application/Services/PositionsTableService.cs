@@ -32,8 +32,11 @@ namespace TPPMSG8.Application.Services {
               int currentPosition = netPosition;
               netPosition += trade.Quantity;
               weightedAverageCost = (currentPosition * weightedAverageCost + trade.Price * trade.Quantity) / netPosition;
-            } else {
+            } else if (trade.BuySell == "SELL") {
               netPosition -= trade.Quantity;
+              if (netPosition < 0) {
+                throw new InvalidOperationException($"Invalid trade sequence: Net position for SecurityId '{trade.SecurityId}' dropped below zero on TradeId {trade.TradeId}. Short positions are not allowed.");
+              }
             }
           }
 

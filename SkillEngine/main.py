@@ -70,10 +70,6 @@ def get_historical_volatility(security_id: str, end_date: str) -> Tuple[float, f
         df['DailyReturn'] = df['ClosePrice'].pct_change()
         real_volatility = df['DailyReturn'].std()
         expected_mean = df['DailyReturn'].mean()
-        
-        # Handle NaN if there wasn't enough data to calculate standard deviation
-        if pd.isna(real_volatility):
-            return 0.0, (0.15 / np.sqrt(252))
             
         return expected_mean, real_volatility
         
